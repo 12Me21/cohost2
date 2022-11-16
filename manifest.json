@@ -1,0 +1,17 @@
+{
+	"manifest_version": 2,
+	"name": "cohost hack",
+	"version": "0",
+	"description": "fuck same origin",
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"browser_specific_settings": {
+		"gecko": {"id": "cohost-hack@ralsei.cock"}
+	}
+}
