@@ -1,0 +1,140 @@
+<!doctype html>
+<meta charset=utf-8>
+
+<meta name=viewport content="width=device-width, height=device-height, initial-scale=1"> <script> if (CSS.supports('-webkit-touch-callout', 'none')) document.querySelector('meta[name=viewport]').content += ", user-scalable=no" </script>
+
+<!-- =============================================================== -->
+
+<title>cC0</title>
+
+<script src=session.js></script>
+
+<!-- general styles -->
+<style>
+	:root {
+		word-break: break-word;
+	}
+	* {
+		contain: content;
+		-webkit-text-size-adjust: none;
+		font-family: inherit; font-size: inherit; word-break: inherit;
+	}
+	html, body {
+		position: fixed;
+		top: 0; right: 0; bottom: 0; left: 0;
+		overflow: hidden;
+		contain: strict;
+	}
+	
+	* { margin: 0 }
+	.row, .col { display: flex }
+	.col { flex-flow: column }
+	.row > *, .col > * {
+		flex: none;
+		min-width: 0;
+		min-height: 0;
+	}
+	.fill { flex: 1 }
+	.row.gaps > :nth-child(n+2) {
+		margin-left: var(--gap);
+	}
+	.col.gaps > :nth-child(n+2) {
+		margin-top: var(--gap);
+	}
+</style>
+
+<!-- styles for this specific page -->
+<style>
+	:root {
+		font-family: sans-serif;
+	}
+	body {
+		border: 30px solid #0A7;
+	}
+	
+	header {
+		background: #0A7;
+		color: white;
+		font-weight: bold;
+		padding: 0.5em;
+		font-size: 1.5em;
+		--gap: 8px;
+	}
+	.logo {
+		height: 32px;
+		width: 32px;
+	}
+	
+	main {
+	}
+	
+	#sendpane {
+		height: 2rem;
+		border-bottom: 2px solid black;
+		padding: 8px;
+		background: #DDD;
+		--gap: 8px;
+	}
+	
+	input, button {
+		appearance: none;
+		border: 1px solid gray;
+		outline-offset: -1px;
+	}
+	
+	#posts {
+		overflow-y: scroll;
+		align-items: start;
+		padding: 8px;
+		--gap: 8px;
+	}
+	
+	.post {
+		border: 1px solid gray;
+		padding: 4px;
+	}
+</style>
+
+<!-- =============================================================== -->
+
+<body class='col'>
+<header class='row gaps' style='background:linear-gradient(to top, #782C4E 0 33%,#C04057 33% 66%)'>
+	<img src=logo.svg class='logo'>
+	<span class='fill'>welcome to my web site</span>
+</header>
+<main class='fill col'>
+	<form style='background:linear-gradient(to top, #0A7 0 33%,#3FBFA8 33% 66%,#87D3B1 66% 100%)' class='row gaps' id=sendpane method=dialog autocomplete=off>
+		<input class='fill' name=message placeholder="message">
+		<button>send</button>
+	</form>
+	<div class='fill col gaps' id=posts><div style='background:#444;color:#eee;font-size:18px;font-family:hack;'>public:</div></div>
+</main>
+
+<script>
+	history.scrollRestoration = 'manual'
+	
+	let sendpane = document.querySelector('#sendpane')
+	let posts = document.querySelector('#posts')
+	
+	function create_post(name, text) {
+		let p = document.createElement('div')
+		let n = document.createElement('b')
+		n.append(name, ": ")
+		p.classList.add('post')
+		p.append(n, text)
+		posts.prepend(p)
+	}
+	for (let i=0; i<100; i++) {
+		//create_post("test", `placeholder message ${i}`)
+	}
+	
+	sendpane.onsubmit = ev=>{
+		ev.preventDefault()
+		// sendpane is a <form>, so we can access elements using .name
+		let text = sendpane.message.value
+		create_post("you", text)
+		sendpane.message.value = ""
+	}
+	
+	// next: templates, sprites, etc.
+</script>

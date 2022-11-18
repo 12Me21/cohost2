@@ -52,6 +52,26 @@ async function api_request(endpoint, cookie, data) {
 		config.method = 'POST'
 		config.body = new Blob([JSON.stringify(data)], {type: "application/json;charset=UTF-8"})
 	}
-	let resp = await fetch(`https://cohost.org/api/v1//trpc/${endpoint}`, config)
+	let resp = await fetch(`https://cohost.org/api/v1//${endpoint}`, config)
 	return await resp.json()
 }
+
+async function api_get(things) {
+	let qs = []
+	let params = {}
+	for (let [thing, args] of things) {
+		let n = qs.length
+		qs[n] = thing
+		if (args!==undefined)
+			params[n] = args
+	}
+	let url = 'trpc/'+qs.join()+"?batch=1&input="+encodeURIComponent(JSON.stringify(params))
+	let data = await api_request(url, localStorage.sid)
+	return data.map(x=>x.result?.data ?? x)
+}
+
+api_get([
+	['posts.profilePosts', {
+		projectHandle:"-12",page:0,options:{hideReplies:false,hideShares:false}
+	}],
+])
