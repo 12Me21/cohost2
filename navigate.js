@@ -27,15 +27,29 @@ class Nav {
 	}
 	
 	update_from_location(fragment) {
-		let cls = this.views.find(cls=>cls.match(fragment))
-		if (!cls)
+		if (!SESS.cookie)
 			return
+		let cls = this.views.find(cls=>cls.match(fragment))
+		if (!(cls instanceof View))
+			cls = UnknownView
 		this.load_view(cls)
+	}
+	
+	onload() {
+		window.onhashchange = ev=>{
+			this.update_from_location(window.location.hash.substring(1))
+		}
+		this.update_from_location(window.location.hash.substring(1))
 	}
 }
 
 window.NAV = new Nav()
 
-window.onhashchange = ev=>{
-	NAV.update_from_location(window.location.hash.substring(1))
+class UnknownView extends View {
+	render() {
+		this.$root.append('???')
+	}
+	title() {
+		return "Unknown Page"
+	}
 }
