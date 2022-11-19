@@ -63,7 +63,9 @@ class Session {
 			config.method = 'POST'
 			config.body = new Blob([JSON.stringify(data)], {type: "application/json;charset=UTF-8"})
 		}
+		console.info('🛰️ requesting', endpoint)
 		let resp = await fetch(Session.API_URL+endpoint, config)
+		console.info('got response')
 		return await resp.json()
 	}
 	
@@ -81,8 +83,7 @@ class Session {
 	}
 }
 
-let x = new Session()
-x.load_cookie()
+window.SESS = new Session()
 
 async function test() {
 	let data = await x.request_trpc([

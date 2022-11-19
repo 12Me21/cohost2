@@ -5,6 +5,7 @@
 <script> 
 	if (CSS.supports('-webkit-touch-callout', 'none')) document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
 	console.log('%c\n',`padding:50px;font:0/100px serif;background:radial-gradient(closest-side at 45% 40%,#FFF,40%,red),repeating-linear-gradient(to right,magenta,yellow,cyan,magenta 500px) fixed;background-blend-mode:luminosity,normal;box-shadow: 1.5px 5px 17px #0249,-3px -5px 10px inset #0008;border-radius: 50%;margin:calc(100% - 100px);`)
+	history.scrollRestoration = 'manual'
 </script>
 
 <!-- =============================================================== -->
@@ -12,6 +13,11 @@
 <title>cC0</title>
 
 <script src=session.js></script>
+<script src=navigate.js></script>
+
+<script src=view/notifs.js></script>
+
+<script src=init.js></script>
 
 <!-- general styles -->
 <style>
@@ -53,7 +59,7 @@
 		font-family: sans-serif;
 	}
 	body {
-		border: 30px solid #0A7;
+		border: 20px solid #0A7;
 	}
 	
 	header {
@@ -102,43 +108,9 @@
 <!-- =============================================================== -->
 
 <body class='col'>
-<header class='row gaps' style='background:linear-gradient(to top, #782C4E 0 33%,#C04057 33% 66%)'>
+<header class='row gaps' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
 	<img src=logo.svg class='logo'>
-	<span class='fill'>welcome to my web site</span>
+	<span class='fill' id=$title>co host 2 ¿?</span>
 </header>
-<main class='fill col'>
-	<form style='background:linear-gradient(to top, #0A7 0 33%,#3FBFA8 33% 66%,#87D3B1 66% 100%)' class='row gaps' id=sendpane method=dialog autocomplete=off>
-		<input class='fill' name=message placeholder="message">
-		<button>send</button>
-	</form>
-	<div class='fill col gaps' id=posts><div style='background:#444;color:#eee;font-size:18px;font-family:hack;'>public:</div></div>
+<main class='fill col' id=$main>
 </main>
-
-<script>
-	history.scrollRestoration = 'manual'
-	
-	let sendpane = document.querySelector('#sendpane')
-	let posts = document.querySelector('#posts')
-	
-	function create_post(name, text) {
-		let p = document.createElement('div')
-		let n = document.createElement('b')
-		n.append(name, ": ")
-		p.classList.add('post')
-		p.append(n, text)
-		posts.prepend(p)
-	}
-	for (let i=0; i<100; i++) {
-		//create_post("test", `placeholder message ${i}`)
-	}
-	
-	sendpane.onsubmit = ev=>{
-		ev.preventDefault()
-		// sendpane is a <form>, so we can access elements using .name
-		let text = sendpane.message.value
-		create_post("you", text)
-		sendpane.message.value = ""
-	}
-	
-	// next: templates, sprites, etc.
-</script>
