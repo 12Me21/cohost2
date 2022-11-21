@@ -1,0 +1,132 @@
+<!doctype html><meta charset=utf-8>
+
+<style>
+	svg {
+		width: 48px;
+		height: 48px;
+		box-sizing: border-box;
+	}
+	.p20 svg {
+		padding: 4px;
+	}
+	img {
+		padding: 4px;
+	}
+	
+	label {
+		display: contents;
+	}
+	
+	div {
+		display: inline-block;
+	}
+	input {
+		display: none;
+	}
+	
+	input:checked + div {
+		position: fixed;
+		left: 0;
+		top: 0;
+		isolation: isolate;
+		background:
+			repeating-linear-gradient(to bottom, black 0 0.2px, transparent 0.2px calc(100% / 24)) left -0.1px,
+			repeating-linear-gradient(to right, black 0 0.2px, white 0.2px calc(100% / 24)) -0.1px;
+		transform: scale(10);
+		transform-origin: top left;
+	}
+	
+	div > svg {
+		display: block;
+		color: orange;
+	}
+	
+	input:checked + div > svg {
+		mix-blend-mode: difference;
+	}
+	ul {
+		all: unset;
+		display: block;
+	}
+	
+</style>
+
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#small-logo /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#egg-button /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#menu /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#menu2 /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#info /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#help /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#pencil /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#next /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#back /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#collapse /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#remove /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#check /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#dropdown /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#home /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#notifications /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#search /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#profile /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#drafts /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#following /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#followers /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#follow-requests /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#settings /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#bug-report /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#cohost-plus /></div></svg></label>
+<br>
+<label class='svg' tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#home-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#notifications-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#search-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#drafts-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#following-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#followers-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#followers-filled2 /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#followers-filled3 /></div></svg></label>
+<label class='svg p20' tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#followers-filled2 /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#follow-requests-filled /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#settings-filled /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#profile-pronouns /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#profile-link /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-report /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#silence /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#block /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-like /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-liked /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-share /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#notif-share /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#comment-reply /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#notif-comment /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-edit /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-delete /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-lock /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-pin /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#post-publish /></div></svg></label>
+<br>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#insert-emoji /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#attach-image /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#content-warning /></div></svg></label>
+<label class=svg tabIndex=0><input type=checkbox><div><svg><use href=icons.svg#hashtag /></div></svg></label>
+<br>
+<div style='display:grid;grid-template-columns:auto auto auto auto;width:max-content'>
+<img width="16" height="16" src="favicon.svg">
+<img width="16" height="16" src="favicon-dark.svg" style="background:#333;">
+<img src=https://cohost.org/static/3c154cde88b7ed1ca92a.png>
+<img src=https://cohost.org/static/3c154cde88b7ed1ca92a.png style="background:#333;">
+<img width="32" height="32" src="favicon.svg">
+<img width="32" height="32" src="favicon-dark.svg" style="background:#333;">
+<img src=https://cohost.org/static/a4f72033a674e35d4cc9.png>
+<img src=https://cohost.org/static/a4f72033a674e35d4cc9.png style="background:#333;">
+<img width="48" height="48" src="favicon.svg">
+<img width="48" height="48" src="favicon-dark.svg" style="background:#333;">
+<img src=https://cohost.org/static/1ba8b89b7a2ed8dd1d04.ico>
+<img src=https://cohost.org/static/1ba8b89b7a2ed8dd1d04.ico style="background:#333;">
+<div>
+demonstrate fav design
