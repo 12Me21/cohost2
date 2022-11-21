@@ -59,7 +59,7 @@
 		font-family: sans-serif;
 	}
 	body {
-		border: 20px solid #0A7;
+		border: 20px ridge #0A7;
 	}
 	
 	header {
@@ -72,10 +72,13 @@
 	}
 	.logo {
 		height: 32px;
-		width: 32px;
+		aspect-ratio: 104 / 75;
+		color: #000;
+		filter: blur(1.2px);
 	}
 	
 	main {
+		padding: 0.25rem;
 	}
 	
 	#sendpane {
@@ -103,14 +106,40 @@
 		border: 1px solid gray;
 		padding: 4px;
 	}
+	
+	.scroll {
+		overflow-y: scroll;
+	}
+	
+	.icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+	
+	.notification {
+		margin: 0.25rem;
+		border: 1px solid;
+	}
+	
+	.mask-roundrect {
+		border-radius: 0.5rem;
+	}
+	.mask-circle {
+		border-radius: 99999px;
+	}
+	.mask-squircle {
+		mask: url('data:image/svg+xml,<svg viewBox="0,0 100,100" xmlns="http://www.w3.org/2000/svg"><path d="M100 0C20 0 0 20 0 100s20 100 100 100 100-20 100-100S180 0 100 0z"/></svg>') 0 / 100% 100%;
+	}
+	
 </style>
 
 <!-- =============================================================== -->
 
 <body class='col'>
 <header class='row gaps' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
-	<img src=logo.svg class='logo'>
+	<svg class='logo'><use href="res/coho2.svg#coho"/></svg>
 	<span class='fill' id=$title>co host 2 ¿?</span>
 </header>
 <main class='fill col' id=$main>
 </main>
+
