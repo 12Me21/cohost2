@@ -5,7 +5,7 @@
 	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="menu">
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
 	</symbol>
-	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="home">
+	<symbol viewBox="0 0 24 24" stroke="currentColor" id="home">
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
 	</symbol>
 	<symbol viewBox="0 0 20 20" fill="currentColor" id="home-filled">
@@ -33,7 +33,7 @@
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
 	</symbol>
 	<symbol viewBox="0 0 20 20" fill="currentColor" id="drafts-filled">
-		<path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"/>
 	</symbol>
 	
 	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="following">
@@ -74,7 +74,7 @@
 	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="bug-report">
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
 	</symbol>
-	<symbol viewBox="0 0 24 24" fill="none" id="cohost-plus">
+	<symbol viewBox="0 0 26 26" fill="none" id="cohost-plus">
 		<path stroke="#E56B6F" stroke-width="2" stroke-linejoin="round" d="M11.3119 5.42651 6.14576 1.57637l1.85085 7.14697L1 10.8444l6.40678 1.9135L1.38644 25l9.15256-7.3545 3.2542 6.8473.1424-8.9222 8.7864 5.5331-6.9762-8.438L25 7.317 13.4678 8.40058 15.1356 1l-3.8237 4.42651Z"/>
 	</symbol>
 	
@@ -121,10 +121,10 @@
 		<path d="M33.9858,39.98h-3.9769l-5.73312e-08,-3.45466e-10c-0.555202,-0.00334555 -1.00799,0.444022 -1.01134,0.999224c-9.55879e-05,0.0158631 0.000184309,0.0317262 0.000839456,0.047576l0.09,1.8926l8.1077e-07,1.69924e-05c0.224947,4.71451 0.713306,9.41275 1.46279,14.0727l-3.37575e-08,-8.77512e-08c0.307198,0.798549 1.20358,1.19687 2.00213,0.889668c0.409051,-0.15736 0.732308,-0.480618 0.889668,-0.889668l1.85145e-06,-1.15151e-05c0.74926,-4.66004 1.23769,-9.35829 1.463,-14.0728l0.09,-1.8926l-9.29513e-09,2.2352e-07c0.0230619,-0.554567 -0.407808,-1.02283 -0.962375,-1.04589c-0.0159302,-0.000662462 -0.0318738,-0.000945741 -0.0478175,-0.000849598Zm5.9856,-11.717l1.33361e-07,4.48278e-08c-0.58324,-0.196049 -0.99529,-0.718529 -1.05,-1.3314l-0.8205,-10.667l-4.90502e-10,-6.9529e-09c-0.0497118,-0.704677 0.367623,-1.35886 1.0276,-1.6108l-6.42663e-07,2.67145e-07c2.01747,-0.838631 3.67436,-2.36219 4.6789,-4.3024l2.26452e-08,-4.19035e-08c0.128914,-0.238548 0.195862,-0.505649 0.1947,-0.7768v0c0,-0.878133 -0.711867,-1.59 -1.59,-1.59c0,0 0,0 0,0h-20.8193h-6.95011e-08c-0.878133,3.83844e-08 -1.59,0.711867 -1.59,1.59l7.33895e-09,-1.713e-06c-0.00116183,0.271151 0.0657851,0.538252 0.194699,0.7768l-8.24693e-07,-1.59257e-06c1.00466,1.94011 2.66151,3.46364 4.6789,4.3024l1.00815e-08,3.848e-09c0.660013,0.251921 1.07742,0.906088 1.0278,1.6108l-0.82,10.667l6.01455e-08,-6.73762e-07c-0.0547098,0.612871 -0.46676,1.13535 -1.05,1.3314c-2.4539,0.8713 -6.0307,3.2637 -6.0307,7.7171v0.4093l2.13163e-14,-2.40083e-07c-1.32594e-07,0.878133 0.711867,1.59 1.59,1.59c0,0 3.55271e-15,0 3.55271e-15,0h24.8183l-6.95011e-08,-7.10543e-15c0.878133,3.83844e-08 1.59,-0.711867 1.59,-1.59c0,0 0,-7.10543e-15 0,-7.10543e-15v-0.409398c0.0005,-4.4533 -3.5765,-6.8457 -6.0304,-7.717Z" fill-rule="evenodd"/>
 	</symbol>
 	<!-- like button states -->
-	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="post-like">
+	<symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" id="like">
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
 	</symbol>
-	<symbol viewBox="0 0 20 20" fill="currentColor" id="post-liked">
+	<symbol viewBox="0 0 20 20" fill="currentColor" id="like-filled">
 		<path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
 	</symbol>
 	
@@ -148,7 +148,7 @@
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
 	</symbol>
 	
-	<symbol viewBox="0 0 25 18" id="egg-button">
+	<symbol viewBox="0 0 25 18" fill="currentColor" id="egg-button">
 		<!-- this icon is for putting stuff inside, like the next/prev buttons and notif count etc. -->
 		<path d="M14.923 17.087c-2.254.666-4.388.967-6.402.905-2.014-.062-3.742-.532-5.183-1.409-1.442-.877-2.436-2.217-2.982-4.022-.549-1.814-.463-3.476.257-4.985.719-1.51 1.905-2.832 3.557-3.965C5.823 2.478 7.776 1.578 10.03.913c2.243-.663 4.369-.965 6.376-.906 2.007.059 3.733.523 5.178 1.394 1.446.87 2.441 2.207 2.987 4.011.546 1.804.457 3.464-.266 4.981-.724 1.516-1.908 2.845-3.551 3.987-1.644 1.143-3.588 2.045-5.831 2.707Z"/>
 	</symbol>

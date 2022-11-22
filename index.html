@@ -5,10 +5,16 @@
 <title>cC0</title>
 
 <script> 
-	if (CSS.supports('-webkit-touch-callout', 'none')) document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
-	console.log('%c\n',`padding:50px;font-size:0;background:radial-gradient(50px at 45% 40%,#FFF,30%,red),repeating-linear-gradient(to right,cyan,magenta,yellow,cyan 200px) fixed;background-blend-mode:luminosity,normal;box-shadow: 1.5px 5px 17px #0249,-3px -5px 10px inset #0008;border-radius: 50%;margin:4px calc(100% - 100px - 8px);display:inline-block;`)
-	console.log('%c\n',`padding:50px;font-size:0;background:radial-gradient(50px at 47% 45%,#0000 0 60%, 90%, #0004 100%, #0008 110% 200%),radial-gradient(50px at 45% 40%,#FFF,30%,red),repeating-linear-gradient(to right,cyan,magenta,yellow,cyan 200px) fixed;background-blend-mode:normal,luminosity,normal;box-shadow: 1.5px 5px 17px #0249;border-radius: 50%;margin:4px calc(100% - 100px - 8px);display:inline-block;`)
+	if (CSS.supports('-webkit-touch-callout', 'none'))
+		document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
 	
+	console.log('%c\n',`
+display:inline-block;padding:1pc;font-size:0;border-radius:50%;
+background:radial-gradient(farthest-side at 40% 35%,#FFF,40%,red),
+repeating-linear-gradient(90deg,#F0F,#FF0,cyan,#F0F 120px) fixed;
+background-blend-mode:luminosity,normal;margin:4px calc(100% - 2pc - 8px);
+box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
+	`)
 	
 	history.scrollRestoration = 'manual'
 </script>
@@ -21,6 +27,11 @@
 <script src=session.js></script>
 <script src=navigate.js></script>
 
+<script src=type/notif.js></script>
+<script src=type/project.js></script>
+<script src=type/post.js></script>
+
+<script src=view/home.js></script>
 <script src=view/notifs.js></script>
 
 <script src=init.js></script>
@@ -28,10 +39,10 @@
 <!-- =============================================================== -->
 
 <body class='col'>
-<header class='row gaps mask-squircle' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
+<header class='row gaps' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
 	<svg class='logo'><use href="res/coho2.svg#coho"/></svg>
 	<span class='fill' id=$title>co host 2 ¿?</span>
 </header>
 <main class='fill col' id=$main>
 </main>
-𒔝
+<textarea></textarea>

@@ -84,12 +84,3 @@ class Session {
 }
 
 window.SESS = new Session()
-
-async function test() {
-	let data = await x.request_trpc([
-		['posts.profilePosts', {
-			projectHandle:"-12",page:0,options:{hideReplies:false,hideShares:false}
-		}],
-	])
-	console.log(data)
-}

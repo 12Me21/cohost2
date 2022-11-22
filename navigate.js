@@ -30,16 +30,16 @@ class Nav {
 		if (!SESS.cookie)
 			return
 		let cls = this.views.find(cls=>cls.match(fragment))
-		if (!(cls instanceof View))
+		if (!cls)
 			cls = UnknownView
 		this.load_view(cls)
 	}
 	
 	onload() {
 		window.onhashchange = ev=>{
-			this.update_from_location(window.location.hash.substring(1))
+			this.update_from_location(window.location.hash.slice(1))
 		}
-		this.update_from_location(window.location.hash.substring(1))
+		this.update_from_location(window.location.hash.slice(1))
 	}
 }
 
@@ -53,3 +53,15 @@ class UnknownView extends View {
 		return "Unknown Page"
 	}
 }
+
+function icon(name) {
+	let svg = document.createElementNS("http://www.w3.org/2000/svg",'svg')
+	let use = document.createElementNS("http://www.w3.org/2000/svg",'use')
+	svg.append(use)
+	svg.classList.add('icon')
+	use.href.baseVal = "res/icons.svg#"+name
+	return svg
+}
+
+
+//lets just merge navigate and session
