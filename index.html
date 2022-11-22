@@ -1,16 +1,22 @@
 <!doctype html>
 <meta charset=utf-8>
-
 <meta name=viewport content="width=device-width, height=device-height, initial-scale=1">
+
+<title>cC0</title>
+
 <script> 
 	if (CSS.supports('-webkit-touch-callout', 'none')) document.querySelector('meta[name=viewport]').content += ", user-scalable=no"
-	console.log('%c\n',`padding:50px;font:0/100px serif;background:radial-gradient(closest-side at 45% 40%,#FFF,40%,red),repeating-linear-gradient(to right,magenta,yellow,cyan,magenta 500px) fixed;background-blend-mode:luminosity,normal;box-shadow: 1.5px 5px 17px #0249,-3px -5px 10px inset #0008;border-radius: 50%;margin:calc(100% - 100px);`)
+	console.log('%c\n',`padding:50px;font-size:0;background:white;background-blend-mode:normal;box-shadow: 1.5px 5px 17px #0249,-3px -5px 10px inset #0008;border-radius: 50%;margin:4px calc(100% - 100px - 8px);display:inline-block;`)
+	console.log('%c\n',`padding:50px;font-size:0;background:radial-gradient(50px at 47% 45%,#0000 0 30px, 45px, #0004 50px, #0008 55px 100px),white;background-blend-mode:normal,normal;box-shadow: 1.5px 5px 17px #0249;border-radius: 50%;margin:4px calc(100% - 100px - 8px);display:inline-block;`)
+	
+	radial-gradient(25px at 45% 40%,#FFF,30%,red),repeating-linear-gradient(to right,cyan,magenta,yellow,cyan 200px) fixed
 	history.scrollRestoration = 'manual'
 </script>
 
-<!-- =============================================================== -->
+<!--<link rel=icon href="res/favicon-dark.svg" media="screen and (prefers-color-scheme: dark)">
+<link rel=icon href="res/favicon.svg" media="screen and (prefers-color-scheme: light)">-->
 
-<title>cC0</title>
+<link rel=stylesheet href=style.css>
 
 <script src=session.js></script>
 <script src=navigate.js></script>
@@ -19,127 +25,13 @@
 
 <script src=init.js></script>
 
-<!-- general styles -->
-<style>
-	:root {
-		word-break: break-word;
-	}
-	* {
-		contain: content;
-		-webkit-text-size-adjust: none;
-		font-family: inherit; font-size: inherit; word-break: inherit;
-	}
-	html, body {
-		position: fixed;
-		top: 0; right: 0; bottom: 0; left: 0;
-		overflow: hidden;
-		contain: strict;
-	}
-	
-	* { margin: 0 }
-	.row, .col { display: flex }
-	.col { flex-flow: column }
-	.row > *, .col > * {
-		flex: none;
-		min-width: 0;
-		min-height: 0;
-	}
-	.fill { flex: 1 }
-	.row.gaps > :nth-child(n+2) {
-		margin-left: var(--gap);
-	}
-	.col.gaps > :nth-child(n+2) {
-		margin-top: var(--gap);
-	}
-</style>
-
-<!-- styles for this specific page -->
-<style>
-	:root {
-		font-family: sans-serif;
-	}
-	body {
-		border: 20px ridge #0A7;
-	}
-	
-	header {
-		background: #0A7;
-		color: white;
-		font-weight: bold;
-		padding: 0.5em;
-		font-size: 1.5em;
-		--gap: 8px;
-	}
-	.logo {
-		height: 32px;
-		aspect-ratio: 104 / 75;
-		color: #000;
-		filter: blur(1.2px);
-	}
-	
-	main {
-		padding: 0.25rem;
-	}
-	
-	#sendpane {
-		height: 2rem;
-		border-bottom: 2px solid black;
-		padding: 8px;
-		background: #DDD;
-		--gap: 8px;
-	}
-	
-	input, button {
-		appearance: none;
-		border: 1px solid gray;
-		outline-offset: -1px;
-	}
-	
-	#posts {
-		overflow-y: scroll;
-		align-items: start;
-		padding: 8px;
-		--gap: 8px;
-	}
-	
-	.post {
-		border: 1px solid gray;
-		padding: 4px;
-	}
-	
-	.scroll {
-		overflow-y: scroll;
-	}
-	
-	.icon {
-		width: 1.5rem;
-		height: 1.5rem;
-	}
-	
-	.notification {
-		margin: 0.25rem;
-		border: 1px solid;
-	}
-	
-	.mask-roundrect {
-		border-radius: 0.5rem;
-	}
-	.mask-circle {
-		border-radius: 99999px;
-	}
-	.mask-squircle {
-		mask: url('data:image/svg+xml,<svg viewBox="0,0 100,100" xmlns="http://www.w3.org/2000/svg"><path d="M100 0C20 0 0 20 0 100s20 100 100 100 100-20 100-100S180 0 100 0z"/></svg>') 0 / 100% 100%;
-	}
-	
-</style>
-
 <!-- =============================================================== -->
 
 <body class='col'>
-<header class='row gaps' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
+<header class='row gaps mask-squircle' style='background:linear-gradient(#87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%)'>
 	<svg class='logo'><use href="res/coho2.svg#coho"/></svg>
 	<span class='fill' id=$title>co host 2 ¿?</span>
 </header>
 <main class='fill col' id=$main>
 </main>
-
+𒔝
