@@ -1,8 +1,9 @@
-Session.prototype.request_notifs = function(offset, count) {
+Session.prototype.request_notifs = async function(offset, count) {
 	let data = await SESS.request_data(`notifications/list?offset=${offset}&limit=${count}`)
-	for (let n of data.notifications)
-		new Notif(n, data)
-	return data.notifications
+	revive_map(Comment, data.comments)
+	revive_map(Project, data.projects)
+	revive_map(Post, data.posts)
+	return data.notifications.map(n=>Notif.Create(n, data))
 }
 
 class NotifView extends View {

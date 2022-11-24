@@ -55,13 +55,19 @@ class UnknownView extends View {
 }
 
 function icon(name) {
-	let svg = document.createElementNS("http://www.w3.org/2000/svg",'svg')
-	let use = document.createElementNS("http://www.w3.org/2000/svg",'use')
+	let svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg')
+	let use = document.createElementNS("http://www.w3.org/2000/svg", 'use')
+	use.href.baseVal = "res/icons.svg#"+name
 	svg.append(use)
 	svg.classList.add('icon')
-	use.href.baseVal = "res/icons.svg#"+name
 	return svg
 }
 
 
-//lets just merge navigate and session
+//lets just merge navigate and session?
+
+function revive_map(type, map) {
+	for (let [k,v] of Object.entries(map)) {
+		new type(v, k)
+	}
+}

@@ -18,7 +18,13 @@
 		<use href="#wing" transform="translate(-1316.63,223.263) scale(1.61799,1.5957)" stroke-width="9.15"/>
 		<use href="#leg" transform="translate(-775.629,34.1386) scale(1.30031,1.2824)"/>
 		<use href="#leg" transform="translate(-661.888,-13.3998) scale(1.30031,1.2824)"/>
-		<use href="#leg" transform="translate(-577.602,-579.56) matrix(1.2577,-0.325599,0.330147,1.24037,0,0)" stroke-width="11.48"/>
+		<use href="#leg" transform="translate(-577.602,-579.56) scale(1.2577,1.24037) matrix(1,-0.262501,0.262501,1,0,0)" stroke-width="11.48"/>
+		<use href="#leg" transform="translate(-577.602,-579.56) rotate(-14.5) scale(1.30031,1.2824)" stroke="red" stroke-width="11.48"/>
+		matrix(1.2577,-0.325599,0.330147,1.24037,-577.602,-579.56)
 		<!--<use href="#leg" transform="translate(-577.602,-579.56) matrix(1,-0.2588844716546076170787946251093265,0.2661681595007941178841797205672501,1,0,0) scale(1.2577,1.24037) " stroke="red" stroke-width="11.48"/>-->
+		<g stroke-width="3">
+		<rect x="-600" y="-200" width="100" height="100" fill="red" transform="translate(-2500,-400) matrix(1.2577,-0.325599,0.330147,1.24037,0,0)"/>
+		<rect x="-600" y="-200" width="100" height="100" fill="red" transform="translate(-2500,-400) rotate(-14.5) scale(1.30031,1.2824)" stroke="green"/>
+		</g>
 	</g>
 </svg>

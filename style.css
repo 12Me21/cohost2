@@ -112,7 +112,19 @@ preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\
 }
 
 /* */
+main {
+	display: flex;
+}
 view-root {
 	flex: 1; min-height: 0;
 	overflow-y: scroll;
+}
+
+.pre {
+	white-space: pre;
+	unicode-bidi: embed;
+}
+
+.username {
+	font-weight: bold;
 }

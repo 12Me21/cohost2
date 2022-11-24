@@ -2,7 +2,11 @@
 
 <style>
 	:root {
-		fill: none;
+		/*fill: none;*/
+	}
+	
+	i-s {
+		--res: 24;
 	}
 	
 	svg {
@@ -16,10 +20,15 @@
 		color: orange;
 	}
 	.p32 svg {
+		padding: 8px;
 		color: forestgreen;
 	}
 	.p26 svg {
 		color: forestgreen;
+	}
+	.p36 svg {
+		color: forestgreen;
+		padding: 6px;
 	}
 	img {
 		padding: 4px;
@@ -42,8 +51,8 @@
 		top: 0;
 		isolation: isolate;
 		background:
-			repeating-linear-gradient(to bottom, black 0 0.2px, transparent 0.2px calc(100% / 24)) left -0.1px,
-			repeating-linear-gradient(to right, black 0 0.2px, white 0.2px calc(100% / 24)) -0.1px;
+			repeating-linear-gradient(to bottom, black 0 0.2px, transparent 0.2px calc(100% / var(--res))) left -0.1px,
+			repeating-linear-gradient(to right, black 0 0.2px, white 0.2px calc(100% / var(--res))) -0.1px;
 		transform: scale(10);
 		transform-origin: top left;
 	}
@@ -54,6 +63,7 @@
 	
 	input:checked + div > svg {
 		mix-blend-mode: difference;
+		padding: 0;
 	}
 	ul {
 		all: unset;
@@ -78,19 +88,19 @@
 			x.type = 'checkbox'
 			let l = document.createElement('label')
 			l.append(x,d)
-			if (this.dataset.size==20)
-				this.classList.add('p20')
-			if (this.dataset.size==32)
-				this.classList.add('p32')
+			if (this.dataset.size) {
+				this.classList.add('p'+this.dataset.size)
+				this.style.setProperty('--res', this.dataset.size)
+			}
 			this.append(l)
 		}
 	})
 </script>
 
-<i-s data-id=small-logo  data-size=32></i-s>
+<i-s data-id=egg data-size=32></i-s>
 <i-s data-id=egg-button data-size=32></i-s>
 <i-s data-id=cohost-plus data-size=26></i-s>
-<i-s data-id=post-pin data-size=32></i-s>
+<i-s data-id=pin data-size=32></i-s>
 <br>
 <i-s data-id=menu></i-s>
 <i-s data-id=menu2></i-s>
@@ -103,8 +113,8 @@
 <i-s data-id=help></i-s>
 <i-s data-id=pencil></i-s>
 <i-s data-id=insert-emoji></i-s>
-<i-s data-id=attach-image></i-s>
-<i-s data-id=content-warning></i-s>
+<i-s data-id=image></i-s>
+<i-s data-id=warning></i-s>
 <i-s data-id=hashtag></i-s>
 <br>
 <i-s data-id=home></i-s>
@@ -114,7 +124,7 @@
 <i-s data-id=drafts></i-s>
 <i-s data-id=following></i-s>
 <i-s data-id=followers></i-s>
-<i-s data-id=follow-requests></i-s>
+<i-s data-id=follow></i-s>
 <i-s data-id=settings></i-s>
 <i-s data-id=bug-report></i-s>
 <br>
@@ -125,29 +135,30 @@
 <i-s data-id=drafts-filled data-size=20></i-s>
 <i-s data-id=following-filled data-size=20></i-s>
 <i-s data-id=followers-filled data-size=20></i-s>
-<i-s data-id=follow-requests-filled data-size=20></i-s>
+<i-s data-id=follow-filled data-size=20></i-s>
 <i-s data-id=settings-filled data-size=20></i-s>
 <br>
-<i-s data-id=post-like></i-s>
-<i-s data-id=post-share></i-s>
+<i-s data-id=like></i-s>
+<i-s data-id=share></i-s>
 <i-s data-id=""></i-s>
-<i-s data-id=post-edit></i-s>
-<i-s data-id=post-delete></i-s>
-<i-s data-id=post-lock></i-s>
-<i-s data-id=post-publish></i-s>
-<i-s data-id=post-report></i-s>
+<i-s data-id=edit></i-s>
+<i-s data-id=trash></i-s>
+<i-s data-id=lock></i-s>
+<i-s data-id=publish></i-s>
+<i-s data-id=report></i-s>
 <i-s data-id=silence></i-s>
 <i-s data-id=block></i-s>
 <br>
-<i-s data-id=post-liked data-size=20></i-s>
-<i-s data-id=notif-share data-size=20></i-s>
-<i-s data-id=notif-comment data-size=20></i-s>
+<i-s data-id=like-filled data-size=20></i-s>
+<i-s data-id=share-filled data-size=20></i-s>
+<i-s data-id=comment-filled data-size=20></i-s>
 <br>
 <i-s data-id=profile-pronouns data-size=20></i-s>
 <i-s data-id=profile-link data-size=20></i-s>
 <i-s data-id=collapse data-size=20></i-s>
 <i-s data-id=remove data-size=20></i-s>
 <i-s data-id=comment-reply data-size=20></i-s>
+<i-s data-id=new-test data-size=32></i-s>
 <br>
 
 <div style='display:grid;grid-template-columns:auto auto auto auto;width:max-content'>
@@ -165,3 +176,9 @@
 <img src=https://cohost.org/static/1ba8b89b7a2ed8dd1d04.ico style="background:#333;">
 </div>
 demonstrate fav design
+
+<svg viewBox="0,0,10,10" xmlns="http://www.w3.org/2000/svg" id="test">
+	<circle r="10"/>
+</svg>
+
+<svg <use href=#test</svg>
