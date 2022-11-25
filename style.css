@@ -36,11 +36,15 @@ html, body {
 	font-family: sans-serif;
 }
 body {
-	border: 20px ridge #0A7;
+	border: 1rem solid #3FBFA8;
+}
+
+* {
+	scrollbar-color: white #3FBFA8;
 }
 
 header {
-	background: #0A7;
+	background: linear-gradient(180.5deg, #87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%);
 	color: white;
 	font-weight: bold;
 	padding: 0.5em;
@@ -52,10 +56,6 @@ header {
 	aspect-ratio: 104 / 75;
 	color: #000;
 	filter: blur(1.2px);
-}
-
-main {
-	padding: 0.25rem;
 }
 
 #sendpane {
@@ -96,6 +96,12 @@ input, button {
 .notification {
 	margin: 0.25rem;
 	border: 1px solid;
+	align-items: center;
+	padding: 0.25em;
+}
+
+.notification > .icon {
+	margin-right: 0.25em;
 }
 
 .mask-roundrect {
@@ -127,4 +133,66 @@ view-root {
 
 .username {
 	font-weight: bold;
+}
+
+.avatar {
+	width: 1.5em;
+	height: 1.5em;
+	vertical-align: top;
+	object-fit: contain;
+}
+
+.project-label {
+	display: inline-flex;
+	align-items: center;
+}
+
+.project-label > .avatar {
+	margin-right: 0.25em;
+}
+
+:root {
+	font-family: 'atkinson hyperlegible';
+}
+@font-face{
+	font-family: 'atkinson hyperlegible';
+	src: url(res/atkinson-hyperlegible/regular.woff2);
+}
+@font-face{
+	font-family: 'atkinson hyperlegible';
+	font-weight: 700;
+	src: url(res/atkinson-hyperlegible/bold.woff2);
+}
+@font-face{
+	font-family: 'atkinson hyperlegible';
+	font-style: italic;
+	src: url(res/atkinson-hyperlegible/italic.woff2);
+}
+@font-face{
+	font-family: 'atkinson hyperlegible';
+	font-weight: 700; font-style: italic;
+	src: url(res/atkinson-hyperlegible/bold-italic.woff2);
+}
+
+/*  */
+
+body, main, view-root, .scroller, .scroller > * {
+	background: white;
+}
+
+.scroller {
+	overflow-y: scroll;
+}
+.scroller > * {
+	width: 100%;
+	min-height: 0;
+}
+
+.scroller, view-root, main {
+	contain: strict;
+}
+
+main > * {
+	width: 100%;
+	height: 100%;
 }

@@ -12,6 +12,10 @@ class Notif {
 	render() {
 		let x = document.createElement('div')
 		x.className = 'notification row'
+		let s = document.createElement('span')
+		let t = document.createElement('span')
+		t.className = 'pre'
+		x.append(s, t)
 		return x
 	}
 }
@@ -25,9 +29,11 @@ Notif.Sub = {
 		}
 		render() {
 			let e = super.render()
+			e.firstChild.replaceWith(this.fromProject.render())
+			e.lastChild.append(" liked your post")
 			let ic = icon('like-filled')
 			ic.style.color = '#FAB'
-			e.append(ic, this.fromProject.render(), " liked your post")
+			e.prepend(ic)
 			return e
 		}
 	},
@@ -40,9 +46,11 @@ Notif.Sub = {
 		}
 		render() {
 			let e = super.render()
+			e.firstChild.replaceWith(this.fromProject.render())
+			e.lastChild.append(" shared your post")
 			let ic = icon('share-filled')
 			ic.style.color = '#00BA7C'
-			e.append(ic, this.fromProject.render(), " shared your post")
+			e.prepend(ic)
 			return e
 		}
 	},
@@ -56,9 +64,11 @@ Notif.Sub = {
 		}
 		render() {
 			let e = super.render()
+			e.firstChild.replaceWith(this.fromProject.render())
+			e.lastChild.append(" commented on your post")
 			let ic = icon('comment-filled')
 			ic.style.color = '#1D9BF0'
-			e.append(ic, this.fromProject.render(), " commented on your post")
+			e.prepend(ic)
 			return e
 		}
 	},
@@ -68,9 +78,11 @@ Notif.Sub = {
 		}
 		render() {
 			let e = super.render()
+			e.firstChild.replaceWith(this.fromProject.render())
+			e.lastChild.append(" followed you")
 			let ic = icon('follow-filled')
 			ic.style.color = 'darkorchid'
-			e.append(ic, this.fromProject.render(), " followed you")
+			e.prepend(ic)
 			return e
 		}
 	},

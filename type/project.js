@@ -29,9 +29,19 @@ class Project {
 	}
 	
 	render() {
+		let av = document.createElement('img')
+		av.className = 'avatar'
+		av.className += " mask-"+this.avatarShape
+		av.src = this.avatarURL
 		let e = document.createElement('span')
-		e.className = 'username pre'
-		e.append(this.name)
-		return e
+		e.className = 'username'
+		let p = document.createElement('span')
+		p.className = 'pre'
+		p.append(this.handle)
+		e.append("@", p)
+		let q = document.createElement('span')
+		q.className = 'project-label'
+		q.append(av, " ", e)
+		return q
 	}
 }
