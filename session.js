@@ -37,7 +37,7 @@ class Session {
 
 	async request_cookie(email, password) {
 		let salt = await Session.request_salt(email)
-		let hash = await Session.get_hash(password, salt)
+		let hash = await Session.hash_password(password, salt)
 		let {data, cookie} = await Session.request_login(email, hash)
 		this.cookie = cookie
 		this.save_cookie()
