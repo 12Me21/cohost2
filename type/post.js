@@ -37,4 +37,14 @@ class Post {
 		Object.setPrototypeOf(data, Post.prototype)
 		data.postingProject2 = new Project(data.postingProject)
 	}
+	
+	render() {
+		let p = document.createElement('span')
+		p.className = 'pre name'
+		p.append(this.headline)
+		let q = document.createElement('span')
+		q.className = 'post-label'
+		q.append(p)
+		return q
+	}
 }

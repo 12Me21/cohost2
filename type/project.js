@@ -41,7 +41,7 @@ class Project {
 	render() {
 		let av = this.render_avatar()
 		let e = document.createElement('span')
-		e.className = 'username'
+		e.className = 'name'
 		let p = document.createElement('span')
 		p.className = 'pre'
 		p.append(this.handle)

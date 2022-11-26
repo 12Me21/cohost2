@@ -30,7 +30,8 @@ Notif.Sub = {
 		render() {
 			let e = super.render()
 			e.firstChild.replaceWith(this.fromProject.render())
-			e.lastChild.append(" liked your post")
+			e.lastChild.append(" liked ")
+			e.append(this.toPost.render())
 			let ic = icon('like-filled')
 			ic.style.color = '#FAB'
 			e.prepend(ic)
@@ -47,7 +48,8 @@ Notif.Sub = {
 		render() {
 			let e = super.render()
 			e.firstChild.replaceWith(this.fromProject.render())
-			e.lastChild.append(" shared your post")
+			e.lastChild.append(" shared ")
+			e.append(this.toPost.render())
 			let ic = icon('share-filled')
 			ic.style.color = '#00BA7C'
 			e.prepend(ic)
@@ -65,7 +67,8 @@ Notif.Sub = {
 		render() {
 			let e = super.render()
 			e.firstChild.replaceWith(this.fromProject.render())
-			e.lastChild.append(" commented on your post")
+			e.lastChild.append(" commented on ")
+			e.append(this.toPost.render())
 			let ic = icon('comment-filled')
 			ic.style.color = '#1D9BF0'
 			e.prepend(ic)

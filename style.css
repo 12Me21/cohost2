@@ -175,7 +175,7 @@ view-root {
 	unicode-bidi: embed;
 }
 
-.username {
+.name {
 	font-weight: bold;
 }
 
@@ -183,10 +183,14 @@ view-root {
 	display: inline-flex;
 	align-items: center;
 }
-
 .project-label > .avatar {
 	margin-right: 0.25em;
 }
+
+/*.post-label {
+	display: inline-flex;
+	align-items: center;
+}*/
 
 /* scrolling elements */
 .scroller {
