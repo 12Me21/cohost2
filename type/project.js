@@ -29,16 +29,13 @@ class Project {
 	}
 	
 	render_avatar() {
-		let img
-		if (this.avatarShape=='squircle') {
-			img = document.createElement('div')
-			img.style.backgroundImage = `url("${CSS.escape(this.avatarURL)}")`
-		} else {
-			img = document.createElement('img')
-			img.src = this.avatarURL
-		}
-		img.className += "avatar mask-"+this.avatarShape
-		return img
+		let img = document.createElement('img')
+		img.src = this.avatarURL
+		let outer = document.createElement('div')
+		outer.className = 'avatar'
+		outer.className += " mask-"+this.avatarShape
+		outer.append(img)
+		return outer
 	}
 	
 	render() {
