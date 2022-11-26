@@ -76,6 +76,7 @@ header {
 	padding: 0.5rem;
 	--gap: 8px;
 	align-items: center;
+	height: 32px;
 }
 #\$title {
 	font-weight: bold;
@@ -107,10 +108,9 @@ header {
 
 :root {
 	--avatar-border: 1px;
-	--avatar-size: 2em;
+	--avatar-size: 32px;
 }
 .avatar {
-	box-sizing: border-box;
 	width: var(--avatar-size);
 	height: var(--avatar-size);
 	vertical-align: top;
@@ -118,7 +118,6 @@ header {
 .avatar > img {
 	width: 100%;
 	height: 100%;
-	box-sizing: border-box;
 	display: block;
 	object-fit: cover;
 }
@@ -126,11 +125,11 @@ header {
 	background: #BBB;
 }
 /* avatar shapes */
-.mask-roundrect > img {
+.mask-roundrect {
 	border-radius: 0.5rem;
 	border: var(--avatar-border) solid;
 }
-.mask-circle > img {
+.mask-circle {
 	border-radius: 50%;
 	border: var(--avatar-border) solid;
 }

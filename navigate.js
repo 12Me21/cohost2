@@ -15,6 +15,8 @@ class Nav {
 	
 	register(cls) {
 		this.views.push(cls)
+		let regex = cls.path.map(x=>x===true ? "[^/]*" : x).join("[/]")
+		cls.path_regex = new RegExp("^"+regex+"$")
 	}
 	
 	async load_view(cls, location) {
@@ -34,7 +36,7 @@ class Nav {
 		let fragment = this.read_location()
 		if (!SESS.cookie)
 			return
-		let cls = this.views.find(cls=>cls.match(fragment))
+		let cls = this.views.find(cls=>cls.path_regex.test(fragment))
 		if (!cls)
 			cls = UnknownView
 		this.load_view(cls, fragment)
@@ -59,6 +61,10 @@ class Nav {
 		let a = document.createElement('a')
 		a.href = "#"+location
 		return a
+	}
+	
+	check_path(path) {
+		
 	}
 }
 
@@ -90,7 +96,12 @@ function icon(name) {
 //lets just merge navigate and session?
 
 function revive_map(type, map) {
-	for (let [k,v] of Object.entries(map)) {
+	for (let [k,v] of Object.entries(map))
 		new type(v, k)
-	}
+}
+
+function revive_list_map(type, map) {
+	for (let [k, v] of Object.entries(map))
+		for (let item of v)
+			new type(item)
 }

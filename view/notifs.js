@@ -7,9 +7,7 @@ Session.prototype.request_notifs = async function(offset, count) {
 }
 
 class NotifView extends View {
-	static match(hash) {
-		return hash=='rc/project/notifications'
-	}
+	static path = ['rc','project','notifications']
 	async request() {
 		// todo: dont rely on global SESS
 		let data = await SESS.request_notifs(0, 20)

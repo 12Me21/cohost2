@@ -1,7 +1,5 @@
 class HomeView extends View {
-	static match(hash) {
-		return hash==''
-	}
+	static path = []
 	title() {
 		return "Home"
 	}
