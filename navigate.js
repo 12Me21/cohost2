@@ -18,15 +18,19 @@ class Nav {
 	}
 	
 	async load_view(cls) {
+		this.set_status('loading...')
 		let view = new cls()
 		await view.request()
 		this.current = view
+		this.set_status('drawing...')
 		$title.replaceChildren(view.title())
 		view.render()
 		$main.replaceChildren(view.$root)
+		this.set_status('ok')
 	}
 	
-	update_from_location(fragment) {
+	update_from_location() {
+		let fragment = this.read_location()
 		if (!SESS.cookie)
 			return
 		let cls = this.views.find(cls=>cls.match(fragment))
@@ -35,11 +39,25 @@ class Nav {
 		this.load_view(cls)
 	}
 	
+	read_location() {
+		return window.location.hash.slice(1)
+	}
+	
 	onload() {
 		window.onhashchange = ev=>{
-			this.update_from_location(window.location.hash.slice(1))
+			this.update_from_location()
 		}
-		this.update_from_location(window.location.hash.slice(1))
+		this.update_from_location()
+	}
+	
+	set_status(text) {
+		$status.textContent = text
+	}
+	
+	render_link(location) {
+		let a = document.createElement('a')
+		a.href = "#"+location
+		return a
 	}
 }
 

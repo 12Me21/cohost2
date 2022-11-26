@@ -1,19 +1,59 @@
+/* fonts */
+@font-face {
+	font-family: 'Atkinson Hyperlegible';
+	src: url(res/atkinson-hyperlegible/regular.woff2);
+}
+@font-face {
+	font-family: 'Atkinson Hyperlegible';
+	font-weight: 700;
+	src: url(res/atkinson-hyperlegible/bold.woff2);
+}
+@font-face {
+	font-family: 'Atkinson Hyperlegible';
+	font-style: italic;
+	src: url(res/atkinson-hyperlegible/italic.woff2);
+}
+@font-face {
+	font-family: 'Atkinson Hyperlegible';
+	font-weight: 700; font-style: italic;
+	src: url(res/atkinson-hyperlegible/bold-italic.woff2);
+}
 :root {
+	font-family:
+		'Atkinson Hyperlegible',
+		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, 'helvetica neue', Arial, 'noto sans', sans-serif,
+		'apple color emoji', 'segoe ui emoji', 'segoe ui symbol', 'noto color emoji';
 	word-break: break-word;
 }
 * {
-	contain: content;
-	-webkit-text-size-adjust: none;
 	font-family: inherit; font-size: inherit; word-break: inherit;
+	-webkit-text-size-adjust: none;
 }
+
+/* all */
+* {
+	contain: content;
+	margin: 0;
+	scrollbar-color: white #3FBFA8;
+}
+
+/* viewport */
 html, body {
 	position: fixed;
 	top: 0; right: 0; bottom: 0; left: 0;
 	overflow: hidden;
 	contain: strict;
 }
+body {
+	border: 1rem solid #3FBFA8;
+}
 
-* { margin: 0 }
+/* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
+body, main, view-root, .scroller, .scroller > * {
+	background: white;
+}
+
+/* flex system */
 .row, .col { display: flex }
 .col { flex-flow: column }
 .row > *, .col > * {
@@ -28,28 +68,18 @@ html, body {
 .col.gaps > :nth-child(n+2) {
 	margin-top: var(--gap);
 }
-</style>
 
-<!-- styles for this specific page -->
-<style>
-:root {
-	font-family: sans-serif;
-}
-body {
-	border: 1rem solid #3FBFA8;
-}
-
-* {
-	scrollbar-color: white #3FBFA8;
-}
-
+/* header */
 header {
 	background: linear-gradient(180.5deg, #87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%);
 	color: white;
-	font-weight: bold;
-	padding: 0.5em;
-	font-size: 1.5em;
+	padding: 0.5rem;
 	--gap: 8px;
+	align-items: center;
+}
+#\$title {
+	font-weight: bold;
+	font-size: 1.5em;
 }
 .logo {
 	height: 32px;
@@ -58,68 +88,74 @@ header {
 	filter: blur(1.2px);
 }
 
-#sendpane {
-	height: 2rem;
-	border-bottom: 2px solid black;
-	padding: 8px;
-	background: #DDD;
-	--gap: 8px;
-}
-
-input, button {
-	appearance: none;
-	border: 1px solid gray;
-	outline-offset: -1px;
-}
-
-#posts {
-	overflow-y: scroll;
-	align-items: start;
-	padding: 8px;
-	--gap: 8px;
-}
-
-.post {
-	border: 1px solid gray;
-	padding: 4px;
-}
-
-.scroll {
-	overflow-y: scroll;
-}
-
+/* icons */
 .icon {
 	width: 1.5rem;
 	height: 1.5rem;
 }
 
+/* notifications */
 .notification {
 	margin: 0.25rem;
 	border: 1px solid;
 	align-items: center;
 	padding: 0.25em;
 }
-
 .notification > .icon {
 	margin-right: 0.25em;
 }
 
+:root {
+	--avatar-border: 2px;
+}
+.avatar {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+.avatar:-moz-broken, .avatar:-moz-loading {
+	background: #BBB;
+}
+/* avatar shapes */
 .mask-roundrect {
 	border-radius: 0.5rem;
+	border: var(--avatar-border) solid;
 }
 .mask-circle {
 	border-radius: 99999px;
+	border: var(--avatar-border) solid;
 }
 .mask-squircle {
-	mask: url('data:image/svg+xml,<svg viewBox="-5,-5 10,10" \
+	background: none 0 / cover content-box;
+	mask: alpha url('data:image/svg+xml,<svg viewBox="-5,-5 10,10" \
 preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\
 <path d="M0-5C+4-5+5-4+5-0S+4+5-0+5-5+4-5+0-4-5+0-5z"/></svg>'
 ) 0 / 100% 100%;
+	position: relative;
+	padding: var(--avatar-border);
+}
+.mask-squircle::before {
+	display: block;
+	display: var(--avatar-border, none);
+	content: "";
+	position: absolute;
+	background: currentColor;
+	top: 0; right: 0; bottom: 0; left: 0;
+	padding: inherit;
+	mask: alpha url('data:image/svg+xml,<svg viewBox="-10,-10 20,20" \
+preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\
+<path d="M-10-10H10V10H-10z M0-5C+4-5+5-4+5-0S+4+5-0+5-5+4-5+0-4-5+0-5z" fill-rule="evenodd" clip-rule="evenodd"/></svg>'
+) content-box padding-box center / 200%;
 }
 
 /* */
 main {
 	display: flex;
+}
+main > * {
+	width: 100%;
+	height: 100%;
 }
 view-root {
 	flex: 1; min-height: 0;
@@ -139,7 +175,6 @@ view-root {
 	width: 1.5em;
 	height: 1.5em;
 	vertical-align: top;
-	object-fit: contain;
 }
 
 .project-label {
@@ -151,35 +186,7 @@ view-root {
 	margin-right: 0.25em;
 }
 
-:root {
-	font-family: 'atkinson hyperlegible';
-}
-@font-face{
-	font-family: 'atkinson hyperlegible';
-	src: url(res/atkinson-hyperlegible/regular.woff2);
-}
-@font-face{
-	font-family: 'atkinson hyperlegible';
-	font-weight: 700;
-	src: url(res/atkinson-hyperlegible/bold.woff2);
-}
-@font-face{
-	font-family: 'atkinson hyperlegible';
-	font-style: italic;
-	src: url(res/atkinson-hyperlegible/italic.woff2);
-}
-@font-face{
-	font-family: 'atkinson hyperlegible';
-	font-weight: 700; font-style: italic;
-	src: url(res/atkinson-hyperlegible/bold-italic.woff2);
-}
-
-/*  */
-
-body, main, view-root, .scroller, .scroller > * {
-	background: white;
-}
-
+/* scrolling elements */
 .scroller {
 	overflow-y: scroll;
 }
@@ -187,12 +194,6 @@ body, main, view-root, .scroller, .scroller > * {
 	width: 100%;
 	min-height: 0;
 }
-
 .scroller, view-root, main {
 	contain: strict;
-}
-
-main > * {
-	width: 100%;
-	height: 100%;
 }

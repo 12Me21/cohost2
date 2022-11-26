@@ -28,11 +28,21 @@ class Project {
 		return this.displayName || this.handle
 	}
 	
+	render_avatar() {
+		let img
+		if (this.avatarShape=='squircle') {
+			img = document.createElement('div')
+			img.style.backgroundImage = `url("${CSS.escape(this.avatarURL)}")`
+		} else {
+			img = document.createElement('img')
+			img.src = this.avatarURL
+		}
+		img.className += "avatar mask-"+this.avatarShape
+		return img
+	}
+	
 	render() {
-		let av = document.createElement('img')
-		av.className = 'avatar'
-		av.className += " mask-"+this.avatarShape
-		av.src = this.avatarURL
+		let av = this.render_avatar()
 		let e = document.createElement('span')
 		e.className = 'username'
 		let p = document.createElement('span')
