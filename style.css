@@ -21,7 +21,7 @@
 :root {
 	font-family:
 		'Atkinson Hyperlegible',
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, 'helvetica neue', Arial, 'noto sans', sans-serif,
+		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, 'helvetica neue', Arial, 'noto sans', sans-serif,
 		'apple color emoji', 'segoe ui emoji', 'segoe ui symbol', 'noto color emoji';
 	word-break: break-word;
 }
@@ -34,7 +34,7 @@
 * {
 	contain: content;
 	margin: 0;
-	scrollbar-color: white #3FBFA8;
+	scrollbar-color: white #3F9FA8;
 }
 
 /* viewport */
@@ -99,14 +99,14 @@ header {
 	margin: 0.25rem;
 	border: 1px solid;
 	align-items: center;
-	padding: 0.25em;
+	padding: 2px;
 }
 .notification > .icon {
 	margin-right: 0.25em;
 }
 
 :root {
-	--avatar-border: 2px;
+	--avatar-border: 1px;
 	--avatar-size: 2em;
 }
 .avatar {
@@ -177,6 +177,16 @@ view-root {
 
 .name {
 	font-weight: bold;
+}
+
+/* todo: the avatar causes the area above/below the text to be clickable. is this good/bad? on notifs page, the page title doesnt have this property. should be consistent. */
+.project-label, .post-label {
+	text-decoration: unset;
+	color: unset;
+}
+
+a:hover {	
+	text-decoration: underline !important;
 }
 
 .project-label {

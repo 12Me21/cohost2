@@ -41,8 +41,10 @@ class Post {
 	render() {
 		let p = document.createElement('span')
 		p.className = 'pre name'
-		p.append(this.headline)
-		let q = document.createElement('span')
+		p.append(this.headline || this.filename)
+		let q = document.createElement('a')
+		let url = this.singlePostPageUrl.replace("https://cohost.org/", "")
+		q.href = NAV.render_link(url)
 		q.className = 'post-label'
 		q.append(p)
 		return q

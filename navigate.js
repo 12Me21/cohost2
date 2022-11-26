@@ -17,9 +17,10 @@ class Nav {
 		this.views.push(cls)
 	}
 	
-	async load_view(cls) {
+	async load_view(cls, location) {
 		this.set_status('loading...')
 		let view = new cls()
+		view.location = location
 		await view.request()
 		this.current = view
 		this.set_status('drawing...')
@@ -36,7 +37,7 @@ class Nav {
 		let cls = this.views.find(cls=>cls.match(fragment))
 		if (!cls)
 			cls = UnknownView
-		this.load_view(cls)
+		this.load_view(cls, fragment)
 	}
 	
 	read_location() {
@@ -65,7 +66,11 @@ window.NAV = new Nav()
 
 class UnknownView extends View {
 	render() {
-		this.$root.append('???')
+		let ch = "https://cohost.org/"+this.location
+		let a = document.createElement('a')
+		a.href = ch
+		a.append(ch)
+		this.$root.append("go to cohost: ", a)
 	}
 	title() {
 		return "Unknown Page"

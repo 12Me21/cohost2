@@ -46,7 +46,8 @@ class Project {
 		p.className = 'pre'
 		p.append(this.handle)
 		e.append("@", p)
-		let q = document.createElement('span')
+		let q = document.createElement('a')
+		q.href = NAV.render_link(this.handle)
 		q.className = 'project-label'
 		q.append(av, " ", e)
 		return q
