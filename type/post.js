@@ -39,6 +39,13 @@ class Post {
 	}
 	
 	render() {
+		let x = document.createElement('div')
+		x.className = 'post'
+		x.append(this.plainTextBody)
+		return x
+	}
+	
+	render_link() {
 		let p = document.createElement('span')
 		p.className = 'pre name'
 		p.append(this.headline || this.filename)

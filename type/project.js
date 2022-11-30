@@ -38,7 +38,7 @@ class Project {
 		return outer
 	}
 	
-	render() {
+	render_link() {
 		let av = this.render_avatar()
 		let e = document.createElement('span')
 		e.className = 'name'

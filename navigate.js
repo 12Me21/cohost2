@@ -15,31 +15,41 @@ class Nav {
 	
 	register(cls) {
 		this.views.push(cls)
-		let regex = cls.path.map(x=>x===true ? "[^/]*" : x).join("[/]")
+		let regex = cls.path.map(x=>x===true ? "([^/]*)" : x).join("[/]")
 		cls.path_regex = new RegExp("^"+regex+"$")
 	}
 	
 	async load_view(cls, location) {
-		this.set_status('loading...')
-		let view = new cls()
-		view.location = location
-		await view.request()
-		this.current = view
-		this.set_status('drawing...')
-		$title.replaceChildren(view.title())
-		view.render()
-		$main.replaceChildren(view.$root)
-		this.set_status('ok')
+		try {
+			this.set_status('loading...')
+			let view = new cls()
+			view.location = location
+			await view.request()
+			this.current = view
+			this.set_status('drawing...')
+			$title.replaceChildren(view.title())
+			view.render()
+			$main.replaceChildren(view.$root)
+			this.set_status('ok')
+		} catch (e) {
+			this.set_status('error')
+		}
 	}
 	
 	update_from_location() {
 		let fragment = this.read_location()
 		if (!SESS.cookie)
 			return
-		let cls = this.views.find(cls=>cls.path_regex.test(fragment))
-		if (!cls)
+		let match
+		let cls = this.views.find(cls=>{
+			match = cls.path_regex.exec(fragment)
+			return match
+		})
+		if (!cls) {
 			cls = UnknownView
-		this.load_view(cls, fragment)
+			match = [fragment]
+		}
+		this.load_view(cls, match)
 	}
 	
 	read_location() {
@@ -71,8 +81,9 @@ class Nav {
 window.NAV = new Nav()
 
 class UnknownView extends View {
+	static path = null
 	render() {
-		let ch = "https://cohost.org/"+this.location
+		let ch = "https://cohost.org/"+this.location[0]
 		let a = document.createElement('a')
 		a.href = ch
 		a.append(ch)

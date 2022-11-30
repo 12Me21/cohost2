@@ -69,6 +69,10 @@ body, main, view-root, .scroller, .scroller > * {
 	margin-top: var(--gap);
 }
 
+img, input, button {
+	vertical-align: top;
+}
+
 /* header */
 header {
 	background: linear-gradient(180.5deg, #87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%);
@@ -113,7 +117,6 @@ header {
 .avatar {
 	width: var(--avatar-size);
 	height: var(--avatar-size);
-	vertical-align: top;
 }
 .avatar > img {
 	width: 100%;

@@ -17,6 +17,13 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 	`)
 	
 	history.scrollRestoration = 'manual'
+	
+	function RELOAD() {
+		var l=window.location.href
+		window.history.replaceState(null, "", "?⌛")
+		window.location.replace(l)
+		RELOAD = ()=>{}
+	}
 </script>
 
 <link rel=icon href="res/favicon.svg">
@@ -32,6 +39,8 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 
 <script src=view/home.js></script>
 <script src=view/notifs.js></script>
+<script src=view/post.js></script>
+<script src=view/login.js></script>
 
 <script src=init.js></script>
 
