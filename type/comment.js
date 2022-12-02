@@ -1,4 +1,4 @@
-class Comment {
+class Comment extends Entity {
 	static fallback(id) {
 		return {
 			canEdit: 'not-allowed',
@@ -21,10 +21,8 @@ class Comment {
 		}
 	}
 	
-	constructor(data=null, id=0) {
-		if (!data)
-			data = Comment.fallback(id)
-		Object.setPrototypeOf(data, Comment.prototype)
+	constructor(data, id) {
+		super(data, id)
 		this.postedAt = new Date(this.postedAtISO)
 	}
 }

@@ -1,4 +1,4 @@
-class Project {
+class Project extends Entity {
 	static fallback(id) {
 		return {
 			handle: `unknown: ${id}`,
@@ -16,12 +16,6 @@ class Project {
 			flags: [], //array of strings - these are like 'badges' basically i think. e.g. "flags": ["friendOfTheSite"],
 			avatarShape: 'roundrect', // "roundrect" | "circle" | "squircle"
 		}
-	}
-	
-	constructor(data=null, id=0) {
-		if (!data)
-			data = Project.fallback(id)
-		return Object.setPrototypeOf(data, Project.prototype)
 	}
 	
 	get name() {

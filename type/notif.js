@@ -6,7 +6,6 @@ class Notif {
 	constructor(data, maps) {
 		this.type = data.type
 		this.createdAt = new Date(data.createdAt)
-		this.fromProject = maps.projects[data.fromProjectId]
 	}
 	
 	render() {
@@ -24,7 +23,8 @@ Notif.Sub = {
 	like: class LikeNotif extends Notif {
 		constructor(data, maps) {
 			super(data, maps)
-			this.toPost = maps.posts[data.toPostId]
+			this.fromProject = Project.map(maps.projects, data.fromProjectId)
+			this.toPost = Post.map(maps.posts, data.toPostId)
 			this.relationshipId = data.relationshipId
 		}
 		render() {
@@ -41,8 +41,9 @@ Notif.Sub = {
 	share: class ShareNotif extends Notif {
 		constructor(data, maps) {
 			super(data, maps)
-			this.toPost = maps.posts[data.toPostId]
-			this.sharePost = maps.posts[data.sharePostId]
+			this.fromProject = Project.map(maps.projects, data.fromProjectId)
+			this.toPost = Post.map(maps.posts, data.toPostId)
+			this.sharePost = Post.map(maps.posts, data.sharePostId)
 			this.transparentShare = data.transparentShare
 		}
 		render() {
@@ -59,10 +60,11 @@ Notif.Sub = {
 	comment: class CommentNotif extends Notif {
 		constructor(data, maps) {
 			super(data, maps)
-			this.toPost = maps.posts[data.toPostId]
-			this.comment = maps.comments[data.commentId]
+			this.fromProject = Project.map(map.projects, data.fromProjectId)
+			this.toPost = Post.map(maps.posts, data.toPostId)
+			this.comment = Comment.map(maps.comments, data.commentId)
 			if (data.inReplyTo)
-				this.inReplyTo = maps.comments[data.inReplyTo]
+				this.inReplyTo = Comment.map(maps.comments, data.inReplyTo)
 		}
 		render() {
 			let e = super.render()
@@ -78,6 +80,7 @@ Notif.Sub = {
 	follow: class ShareNotif extends Notif {
 		constructor(data, maps) {
 			super(data, maps)
+			this.fromProject = Project.map(maps.projects, data.fromProjectId)
 		}
 		render() {
 			let e = super.render()
@@ -85,6 +88,29 @@ Notif.Sub = {
 			e.lastChild.append(" followed you")
 			let ic = icon('follow-filled')
 			ic.style.color = 'darkorchid'
+			e.prepend(ic)
+			return e
+		}
+	},
+	
+	groupedLike: class GroupedLikeNotif extends Notif {
+		constructor(data, maps) {
+			super(data, maps)
+			this.toPost = Post.map(maps.posts, data.toPostId)
+			this.fromProjects = Project.maps(maps.projects, data.fromProjectIds)
+			this.relationshipIds = data.relationshipIds
+		}
+		render() {
+			let e = super.render()
+			let fp = this.fromProjects
+			e.firstChild.replaceWith(fp[0].render_link())
+			if (fp.length>1)
+				e.lastChild.append(" and "+(fp.length-1)+" others liked ")
+			else
+				e.lastChild.append(" liked ")
+			e.append(this.toPost.render_link())
+			let ic = icon('like-filled')
+			ic.style.color = '#FAB'
 			e.prepend(ic)
 			return e
 		}

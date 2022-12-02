@@ -1,8 +1,9 @@
 Session.prototype.request_notifs = async function(offset, count) {
 	let data = await SESS.request_data(`notifications/list?offset=${offset}&limit=${count}`)
-	revive_map(Comment, data.comments)
-	revive_map(Project, data.projects)
-	revive_map(Post, data.posts)
+	console.log(data)
+	Comment.revive_map(data.comments)
+	Project.revive_map(data.projects)
+	Post.revive_map(data.posts)
 	return data.notifications.map(n=>Notif.Create(n, data))
 }
 

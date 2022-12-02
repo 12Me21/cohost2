@@ -1,4 +1,4 @@
-class Post {
+class Post extends Entity {
 	static fallback(id) {
 		return {
 			postId: id,
@@ -31,11 +31,9 @@ class Post {
 		}
 	}
 	
-	constructor(data=null, id=0) {
-		if (!data)
-			data = Post.fallback(id)
-		Object.setPrototypeOf(data, Post.prototype)
-		data.postingProject2 = new Project(data.postingProject)
+	constructor(data, id) {
+		super(data, id)
+		this.postingProject = new Project(this.postingProject)
 	}
 	
 	render() {

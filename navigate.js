@@ -20,6 +20,7 @@ class Nav {
 	}
 	
 	async load_view(cls, location) {
+		let ok = false
 		try {
 			this.set_status('loading...')
 			let view = new cls()
@@ -31,8 +32,10 @@ class Nav {
 			view.render()
 			$main.replaceChildren(view.$root)
 			this.set_status('ok')
-		} catch (e) {
-			this.set_status('error')
+			ok = true
+		} finally {
+			if (!ok)
+				this.set_status('error')
 		}
 	}
 	
@@ -105,14 +108,3 @@ function icon(name) {
 
 
 //lets just merge navigate and session?
-
-function revive_map(type, map) {
-	for (let [k,v] of Object.entries(map))
-		new type(v, k)
-}
-
-function revive_list_map(type, map) {
-	for (let [k, v] of Object.entries(map))
-		for (let item of v)
-			new type(item)
-}

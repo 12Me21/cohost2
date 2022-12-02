@@ -3,8 +3,8 @@ Session.prototype.request_post = async function(handle, postId) {
 		['posts.singlePost', {handle, postId}]
 	])
 	data = data[0].result.data
-	new Post(data.post)
-	revive_list_map(Comment, data.comments)
+	data.post = new Post(data.post)
+	Comment.revive_list_map(data.comments)
 	return data
 }
 

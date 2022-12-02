@@ -61,7 +61,9 @@ body, main, view-root, .scroller, .scroller > * {
 	min-width: 0;
 	min-height: 0;
 }
-.fill { flex: 1 }
+.fill {
+	flex: 1
+}
 .row.gaps > :nth-child(n+2) {
 	margin-left: var(--gap);
 }
@@ -212,6 +214,17 @@ a:hover {
 	width: 100%;
 	min-height: 0;
 }
-.scroller, view-root, main {
+.scroller, view-root, main, body > div, aside {
 	contain: strict;
+}
+
+/* sidebar */
+aside {
+	
+}
+
+aside > div {
+	white-space: pre-wrap;
+	border: solid;
+	padding: 1px 3px;
 }
