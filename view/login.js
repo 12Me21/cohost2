@@ -43,7 +43,9 @@ class LoginView extends View {
 				await SESS.request_cookie(e.value, p.value)
 			} catch(e) {
 				alert('login failed')
+				throw e
 			}
+			window.location.hash = "#" // hack
 			RELOAD()
 		}
 		
