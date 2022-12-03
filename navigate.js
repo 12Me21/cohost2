@@ -1,3 +1,5 @@
+"use strict"
+
 // base class
 class View {
 	$root = document.createElement('view-root')
@@ -96,15 +98,5 @@ class UnknownView extends View {
 		return "Unknown Page"
 	}
 }
-
-function icon(name) {
-	let svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg')
-	let use = document.createElementNS("http://www.w3.org/2000/svg", 'use')
-	use.href.baseVal = "res/icons.svg#"+name
-	svg.append(use)
-	svg.classList.add('icon')
-	return svg
-}
-
 
 //lets just merge navigate and session?

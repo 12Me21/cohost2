@@ -1,3 +1,5 @@
+"use strict"
+
 Session.prototype.request_post = async function(handle, postId) {
 	let data = await SESS.request_trpc([
 		['posts.singlePost', {handle, postId}]

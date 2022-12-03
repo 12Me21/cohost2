@@ -1,3 +1,5 @@
+"use strict"
+
 class Entity {
 	static revive_map(map) {
 		for (let [k,v] of Object.entries(map))

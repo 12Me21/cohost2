@@ -1,3 +1,5 @@
+"use strict"
+
 class Comment extends Entity {
 	static fallback(id) {
 		return {

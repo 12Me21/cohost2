@@ -1,3 +1,5 @@
+"use strict"
+
 class Session {
 	static API_URL = 'https://cohost.org/api/v1//'
 	

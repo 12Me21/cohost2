@@ -1,3 +1,5 @@
+"use strict"
+
 class Project extends Entity {
 	static fallback(id) {
 		return {

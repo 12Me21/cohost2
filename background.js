@@ -1,3 +1,5 @@
+"use strict"
+
 console.log('running')
 
 function make_filter(event, field, process) {

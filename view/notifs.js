@@ -1,3 +1,5 @@
+"use strict"
+
 Session.prototype.request_notifs = async function(offset, count) {
 	let data = await SESS.request_data(`notifications/list?offset=${offset}&limit=${count}`)
 	console.log(data)

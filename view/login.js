@@ -1,3 +1,5 @@
+"use strict"
+
 class LoginView extends View {
 	static path = ['rc', 'login']
 	title() {

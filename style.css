@@ -47,6 +47,9 @@ html, body {
 body {
 	border: 1rem solid #3FBFA8;
 }
+#\$sidebar {
+	border-bottom: 1rem solid #3F9FA8;
+}
 
 /* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
 body, main, view-root, .scroller, .scroller > * {
@@ -83,6 +86,7 @@ header {
 	--gap: 8px;
 	align-items: center;
 	height: 32px;
+	border-right: 1em solid #3F9FA8;
 }
 #\$title {
 	font-weight: bold;
@@ -223,7 +227,7 @@ aside {
 	
 }
 
-aside > div {
+#\$printer > div {
 	white-space: pre-wrap;
 	border: solid;
 	padding: 1px 3px;

@@ -1,3 +1,5 @@
+"use strict"
+
 class Notif {
 	static Create(data, maps) {
 		return new (Notif.Sub[data.type] ?? Notif)(data, maps)

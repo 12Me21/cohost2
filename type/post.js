@@ -1,3 +1,5 @@
+"use strict"
+
 class Post extends Entity {
 	static fallback(id) {
 		return {
