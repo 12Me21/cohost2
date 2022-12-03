@@ -19,13 +19,16 @@ window.addEventListener('DOMContentLoaded', ev=>{
 	log`owo`
 	
 	{
-		let a = NAV.render_link('')
-		a.append(icon('home'), "home")
-		a.className = 'row'
-		let b = NAV.render_link('rc/project/notifications')
-		b.append(icon('notifications'), "notifications")
-		b.className = 'row'
-		$sidebar.append(a, b)
+		for (let [i, t, u] of [
+			['home', "home", ''],
+			['notifications', "notifications", 'rc/project/notifications'],
+			['login', "log in", 'rc/login'],
+		]) {
+			let a = NAV.render_link(u)
+			a.append(icon(i), t)
+			a.className = 'row'
+			$sidebar.append(a)
+		}
 	}
 	
 	NAV.onload()
