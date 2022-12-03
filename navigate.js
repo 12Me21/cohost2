@@ -18,6 +18,7 @@ class Nav {
 	register(cls) {
 		this.views.push(cls)
 		let regex = cls.path.map(x=>x===true ? "([^/]*)" : x).join("[/]")
+		// bad
 		cls.path_regex = new RegExp("^"+regex+"$")
 	}
 	
@@ -43,8 +44,6 @@ class Nav {
 	
 	update_from_location() {
 		let fragment = this.read_location()
-		if (!SESS.cookie)
-			return
 		let match
 		let cls = this.views.find(cls=>{
 			match = cls.path_regex.exec(fragment)
