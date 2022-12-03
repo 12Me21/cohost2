@@ -1,10 +1,10 @@
 "use strict"
 
 class Session {
-	static API_URL = 'https://cohost.org/api/v1//'
+	static BASE = 'https://cohost.org'
 	
 	static async request_salt(email) {
-		let url = new URL(this.API_URL+'login/salt')
+		let url = new URL('api/v1/login/salt', this.BASE)
 		url.searchParams.set('email', email)
 		let resp = await fetch(url)
 		let data = await resp.json()
@@ -29,7 +29,7 @@ class Session {
 	}
 	
 	static async request_login(email, hash) {
-		const url = new URL(this.API_URL+'login')
+		const url = new URL('api/v1/login', this.BASE)
 		const body = new URLSearchParams([['email', email],['clientHash', hash]])
 		const resp = await fetch(url, {method:'POST', body, mode:'cors', headers:{'x-idk':'3'}})
 		const cookie = /connect.sid=(.*?);/.exec(resp.headers.get('content-language'))?.[1]
@@ -66,7 +66,7 @@ class Session {
 			config.body = new Blob([JSON.stringify(data)], {type: "application/json;charset=UTF-8"})
 		}
 		console.info('🛰️ requesting', endpoint)
-		let resp = await fetch(Session.API_URL+endpoint, config)
+		let resp = await fetch(`${Session.BASE}/api/v1/${endpoint}`, config)
 		console.info('got response')
 		return await resp.json()
 	}
@@ -81,6 +81,26 @@ class Session {
 		}
 		let url = 'trpc/'+qs.join(",")+"?batch=1&input="+encodeURIComponent(JSON.stringify(params))
 		let data = await this.request_data(url)
+		return data
+	}
+	
+	async request_page(endpoint) {
+		console.info('🛰️ requesting', endpoint)
+		let resp = await fetch(`${Session.BASE}/${endpoint}`, {
+			headers: {x_12_cookie: 'connect.sid='+this.cookie},
+		})
+		console.info('got response')
+		let html = await resp.text()
+		
+		let data = {}
+		let regex = /^<script type="application[/]json" id="([^"]*)">/gm
+		let match
+		while (match = regex.exec(html)) {
+			let id = match[1]
+			let start = regex.lastIndex
+			let end = html.indexOf("</script>\n", start) // this is safe, this str cannot appear in json
+			data[id] = JSON.parse(html.substring(start, end))
+		}
 		return data
 	}
 }

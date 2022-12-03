@@ -4,8 +4,14 @@ console.log('running')
 
 function make_filter(event, field, process) {
 	browser.webRequest[event].addListener(
-		({[field]:headers})=>({[field]:process(headers)}),
-		{urls: ["https://cohost.org/api/v1//*"]},
+		(data)=>{
+			//HACK
+			if (!String(data.documentUrl).startsWith('file:///home/twelve/Code/cohost/index.html#'))
+				return
+			let {[field]:headers} = data
+			return {[field]:process(headers)}
+		},
+		{urls: ["https://cohost.org/*"]},
 		["blocking", field],
 	)
 }

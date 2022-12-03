@@ -13,7 +13,7 @@ class NotifView extends View {
 	static path = ['rc','project','notifications']
 	async request() {
 		// todo: dont rely on global SESS
-		let data = await SESS.request_notifs(0, 20)
+		let data = await SESS.request_notifs(0, 30)
 		this.data = data
 	}
 	title() {
