@@ -213,10 +213,12 @@ a:hover {
 /* scrolling elements */
 .scroller {
 	overflow-y: scroll;
+	width: 100%;
+	display: flex;
+	flex-flow: column;
 }
 .scroller > * {
-	width: 100%;
-	min-height: 0;
+	flex: none;
 }
 .scroller, view-root, main, body > div, aside {
 	contain: strict;
