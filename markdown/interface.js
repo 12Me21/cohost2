@@ -24,8 +24,8 @@ const n = (id)=>{
 	return module.exports
 }
 
-n.m = {}
-n.c = {}
+n.m = {} // non-loaded modules
+n.c = {} // loaded modules
 
 n.nmd = function (e) {
 	e.paths = []
@@ -42,8 +42,10 @@ n.d = (exports, t, r)=>{
 	if ('string' == typeof t) {
 		if (!n.o(exports, t))
 			Object.defineProperty(exports, t, {enumerable: true, get: r})
-	} else
+	} else {
+		// i dont actually know where this is defined
 		Object.defineProperties(exports, Object.fromEntries(Object.entries(t).map(([k,v])=>[k,{enumerable:true, get:v}])))
+	}
 }
 // set as es6 module
 n.r = (exports)=>{
@@ -128,47 +130,86 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 			}
 		}
 	},
-	67905(module, exports) {
-		exports.S = ()=>{} // img src
+	67905: function (m, exports, n) {
+		let $45984 = n(45984)
+		exports.S = e=>{
+			return String($45984.ZP.public.static.staticAsset({path: e}))
+		}
 	},
 	6087(module, exports) {
 		exports.F = null
 	},
-	67368(m, exports) { //iframely (?)
-		exports.a = ()=>{}
+	// eh
+	79829(m, exports, n) {
+		exports._v = (a, b, c)=>{
+			if (!Array.isArray(a))
+				return a
+			if ('function'==typeof b)
+				return {queryKey: a, queryFn: b, ...c}
+			return {queryKey: a, ...b}
+		}
 	},
+	// iframely
+	67368(m, exports, n) {
+		//let $79829 = n(79829)
+		//let $12800 = n(12800) no
+		//let $75516 = n(75516) no
+		exports.a = (e, t, n)=>{
+			//const a = $79829._v(e, t, n)
+			//return $75516.r(a, $12800.z)
+		}
+	},
+	// localization (overridden)
 	84008() {
+		this.ZP = {
+			t(key, params) {
+				return params.defaultValue.replace(/[{][{](\w+)}}/g, (_,k)=>params[k])
+			}
+		}
 	},
 	45984(m, exports) {
 		exports.ZP = {
 			public: {
 				static: {
-					staticAsset(){
-						return ""
+					staticAsset({path}) {
+						let t = path.replace(/^[/]srv[/]release[/]server[/]/, "/static/")
+						return new URL(t, Session.BASE)
 					},
 				},
 				project: {
-					mainAppProfile() {
-						return ""	
+					mainAppProfile({projectHandle}) {
+						return new URL(`/${projectHandle}`, Session.BASE)
 					}
 				},
 			},
 		}
 	},
 	94159(m, exports) {
+		let N = {current: null}
 		exports.memo = (type, compare=null)=>{
 			return {
 				$$typeof: Symbol.for('react.memo'), type, compare,
 			}
 		}
+		exports.useContext = (e)=>{
+			return N.current.useContext(e)
+		}
+		exports.useEffect = (e, t)=>{
+			return N.current.useEffect(e, t)
+		}
+		const FRAG = Symbol.for("react.fragment")
 		exports.createElement = (name, attrs, ...contents)=>{
-			let x = document.createElement(name)
+			console.log('createelement?', name)
+			let x = name===FRAG ? document.createDocumentFragment() : document.createElement(name)
 			for (let attr in attrs) {
 				let val = attrs[attr]
-				if (attr=='style' && val && typeof val == 'object') {
-					for (let prop in val) {
+				if (attr=='className') {
+					x.className = val
+				} else if (attr=='dangerouslySetInnerHTML') {
+					x.innerHTML = val.__html
+				} else if (attr=='style' && val && typeof val == 'object') {
+					for (let prop in val)
 						x.style.setProperty(prop, val[prop])
-					}
 				} else
 					x.setAttribute(attr, val)
 			}
@@ -184,6 +225,7 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 			}
 			return x
 		}
+		exports.Fragment = FRAG
 		exports.forwardRef = (render)=>{
 			return {
 				$$typeof: Symbol.for('react.forward_ref'), render,

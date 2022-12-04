@@ -4,6 +4,7 @@
 	border: solid 0;
 }
 :host {
+	contain: content;
 	word-break: break-word;
 	-webkit-text-size-adjust: 100%;
 	-moz-tab-size: 4; tab-size: 4;

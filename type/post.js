@@ -52,17 +52,19 @@ class Post extends Entity {
 			x.append(title)
 		}
 		
-		let content = document.createElement('div')
+		let content = document.createElement('mark-down')
 		let sh = content.attachShadow({mode:'open'})
 		
 		let s = $prose_css.cloneNode(true)
 		s.disabled = false
 		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
-		console.log(this, res)
-		if (res.initialLength > 1)
-			sh.append(s, ...res.initial.childNodes)
-		else
-			sh.append(s, res.initial)
+		let st = res.initial
+		if (res.initialLength == 1) {
+			let d = document.createElement('div')
+			d.append(st)
+			st = d
+		}
+		sh.append(s, st)
 		
 		x.append(content)
 		

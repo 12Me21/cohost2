@@ -118,6 +118,10 @@ header {
 
 /* post */
 
+mark-down {
+	display: block;
+}
+
 .post {
 	margin: 0.25rem;
 	border: 1px solid;
@@ -131,7 +135,7 @@ header {
 	font-weight: bold;
 	margin: 0.75rem 0.75rem 0;
 }
-.post > :last-child {
+.post > mark-down {
 	margin: 0.75rem;
 }
 
