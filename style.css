@@ -116,6 +116,25 @@ header {
 	margin-right: 0.25em;
 }
 
+/* post */
+
+.post {
+	margin: 0.25rem;
+	border: 1px solid;
+	--avatar-size: 24px;
+}
+.post > :first-child {
+	margin: 0.75rem 0.75rem 0;
+}
+.post > h1 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin: 0.75rem 0.75rem 0;
+}
+.post > :last-child {
+	margin: 0.75rem;
+}
+
 :root {
 	--avatar-border: 1px;
 	--avatar-size: 32px;

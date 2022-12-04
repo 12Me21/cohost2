@@ -47,7 +47,7 @@ class Post extends Entity {
 		x.append(name)
 		
 		if (this.headline) {
-			let title = document.createElement('div')
+			let title = document.createElement('h1')
 			title.append(this.headline)
 			x.append(title)
 		}
@@ -58,7 +58,11 @@ class Post extends Entity {
 		let s = $prose_css.cloneNode(true)
 		s.disabled = false
 		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
-		sh.append(s, res.initial)
+		console.log(this, res)
+		if (res.initialLength > 1)
+			sh.append(s, ...res.initial.childNodes)
+		else
+			sh.append(s, res.initial)
 		
 		x.append(content)
 		

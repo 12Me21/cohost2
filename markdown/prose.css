@@ -1,34 +1,14 @@
-@font-face {
-	font-family: 'Atkinson Hyperlegible';
-	src: url(../../res/atkinson-hyperlegible/regular.woff2);
-}
-@font-face {
-	font-family: 'Atkinson Hyperlegible';
-	font-weight: 700;
-	src: url(../../res/atkinson-hyperlegible/bold.woff2);
-}
-@font-face {
-	font-family: 'Atkinson Hyperlegible';
-	font-style: italic;
-	src: url(../../res/atkinson-hyperlegible/italic.woff2);
-}
-@font-face {
-	font-family: 'Atkinson Hyperlegible';
-	font-weight: 700; font-style: italic;
-	src: url(../../res/atkinson-hyperlegible/bold-italic.woff2);
-}
-
 /* 🟥 */
 *, ::before, ::after {
 	box-sizing: border-box;
 	border: solid 0;
 }
-:root {
+:host {
 	word-break: break-word;
 	-webkit-text-size-adjust: 100%;
 	-moz-tab-size: 4; tab-size: 4;
 	color: #191919;
-	max-width: 65ch;
+	/*max-width: 65ch;*/
 	font:
 		1rem / 1.75
 		'Atkinson Hyperlegible', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'segoe ui', 'Roboto', 'helvetica neue', 'Arial', 'noto sans', 'sans-serif',
@@ -248,7 +228,7 @@ li {
 }
 
 /* any list inside a top-level list */
-:root > :where(ul, ol) :where(ul, ol) {
+:host > div > :where(ul, ol) :where(ul, ol) {
 	margin: 0.75em 0;
 }
 
@@ -256,21 +236,21 @@ li {
 p {
 	margin: 1.25em 0;
 }
-:root > :where(ul, ol) > li p {
+:host > div > :where(ul, ol) > li p {
 	margin: 0.75em 0;
 }
 
 /* 🟥 */
-:root > :where(ul, ol) > li > *:first-child {
+:host > div > :where(ul, ol) > li > *:first-child {
 	margin-top: 1.25em !important;
 }
 /* 🟥 */
-:root > :where(ul, ol) > li > *:last-child {
+:host > div > :where(ul, ol) > li > *:last-child {
 	margin-bottom: 1.25em !important;
 }
 /* 🟥 */
 :where(hr, h2, h3, h4) + *,
-:root > *:first-child {
+:host > div > :first-child {
 	margin-top: 0 !important;
 }
 /* 🟥 */
@@ -282,6 +262,6 @@ p {
 	padding-right: 0 !important;
 }
 /* 🟥 */
-:root > *:last-child {
+:host > div > :last-child {
 	margin-bottom: 0 !important;
 }
