@@ -40,8 +40,22 @@ class Post extends Entity {
 	
 	render() {
 		let x = document.createElement('div')
-		x.className = 'post'
-		x.append(this.plainTextBody)
+		x.className = 'post col'
+		
+		let name = document.createElement('div')
+		name.append(this.postingProject.render_link())
+		x.append(name)
+		
+		if (this.headline) {
+			let title = document.createElement('div')
+			title.append(this.headline)
+			x.append(title)
+		}
+		
+		let content = document.createElement('div')
+		content.append(this.plainTextBody)
+		x.append(content)
+		
 		return x
 	}
 	

@@ -84,9 +84,17 @@ class Session {
 		return data
 	}
 	
-	async request_page(endpoint) {
+	async request_page(endpoint, params) {
+		let url = new URL(endpoint, Session.BASE)
+		if (params) {
+			let sp = url.searchParams
+			for (let [k, v] of Object.entries(params)) {
+				if (v!==undefined)
+					sp.append(k, v)
+			}
+		}
 		console.info('🛰️ requesting', endpoint)
-		let resp = await fetch(`${Session.BASE}/${endpoint}`, {
+		let resp = await fetch(url, {
 			headers: {x_12_cookie: 'connect.sid='+this.cookie},
 		})
 		console.info('got response')
