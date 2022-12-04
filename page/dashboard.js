@@ -1,5 +1,6 @@
 "use strict"
 
+// todo: better way of registering request types
 Session.prototype.request_dashboard = async function(refTimestamp, skipPosts) {
 	let data = await this.request_page('', {refTimestamp, skipPosts})
 	let db = data.__COHOST_LOADER_STATE__.dashboard
@@ -16,8 +17,9 @@ class DashboardView extends View {
 	}
 	async request() {
 		// todo: dont rely on global SESS.
-		// just specify which request function to call, instead.
+		// just specify which request to call, instead.
 		this.data = await SESS.request_dashboard()
+		await PARSER
 	}
 	render() {
 		this.$root.className += ' scroller'

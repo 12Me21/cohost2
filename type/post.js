@@ -53,7 +53,13 @@ class Post extends Entity {
 		}
 		
 		let content = document.createElement('div')
-		content.append(this.plainTextBody)
+		let sh = content.attachShadow({mode:'open'})
+		
+		let s = $prose_css.cloneNode(true)
+		s.disabled = false
+		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
+		sh.append(s, res.initial)
+		
 		x.append(content)
 		
 		return x

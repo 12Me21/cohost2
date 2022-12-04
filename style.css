@@ -191,6 +191,7 @@ view-root {
 .project-label, .post-label {
 	text-decoration: unset;
 	color: unset;
+	vertical-align: top;
 }
 
 a:hover {	
