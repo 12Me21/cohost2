@@ -30,6 +30,28 @@
 	-webkit-text-size-adjust: none;
 }
 
+:root {
+	--image-border: 1px solid silver;
+	--embed-height: 20vh;
+	
+	--tw-prose-body: #374151;
+	--tw-prose-headings: #111827;
+	--tw-prose-lead: #4b5563;
+	--tw-prose-links: #111827;
+	--tw-prose-bold: #111827;
+	--tw-prose-counters: #6b7280;
+	--tw-prose-bullets: #d1d5db;
+	--tw-prose-hr: #e5e7eb;
+	--tw-prose-quotes: #111827;
+	--tw-prose-quote-borders: #e5e7eb;
+	--tw-prose-captions: #6b7280;
+	--tw-prose-code: #111827;
+	--tw-prose-pre-code: #e5e7eb;
+	--tw-prose-pre-bg: #1f2937;
+	--tw-prose-th-borders: #d1d5db;
+	--tw-prose-td-borders: #e5e7eb;
+}
+
 /* all */
 * {
 	contain: content;
@@ -64,6 +86,9 @@ body, main, view-root, .scroller, .scroller > * {
 	min-width: 0;
 	min-height: 0;
 }
+.align {
+	align-items: center;
+}
 .fill {
 	flex: 1
 }
@@ -72,6 +97,10 @@ body, main, view-root, .scroller, .scroller > * {
 }
 .col.gaps > :nth-child(n+2) {
 	margin-top: var(--gap);
+}
+
+img {
+	object-fit: contain;
 }
 
 img, input, button {
@@ -118,6 +147,21 @@ header {
 
 /* post */
 
+.images {
+	height: var(--embed-height);
+	justify-content: space-around;
+	margin: 0.25rem 0.5rem 0.5rem;
+}
+
+.images > * {
+	/*flex: 0 1 50%;*/
+	flex: 0 1 auto;
+	box-sizing: border-box;
+	align-self: center;
+	max-height: 100%;
+	border: var(--image-border);
+}
+
 mark-down {
 	display: block;
 }
@@ -126,17 +170,25 @@ mark-down {
 	margin: 0.25rem;
 	border: 1px solid;
 	--avatar-size: 24px;
+	border-radius: 1rem 1rem 0.5rem 0.5rem;
 }
 .post > :first-child {
-	margin: 0.75rem 0.75rem 0;
+	padding: 0.5rem;
+	background: hsl(2.8rad, 100%, 95%);
+	border-radius: 1rem;
+	box-shadow: 0 1px 1px #0008;
+	display: flex;
+	align-items: center;
 }
 .post > h1 {
 	font-size: 1.25rem;
 	font-weight: bold;
-	margin: 0.75rem 0.75rem 0;
+	margin: 0.5rem 0.5rem 0.25rem;
+	border-bottom: 1px dashed silver;
+	padding-bottom: 0.25rem;
 }
 .post > mark-down {
-	margin: 0.75rem;
+	--prose-margin: 0.25rem 0.75rem 0.75rem;
 }
 
 :root {
@@ -157,36 +209,70 @@ mark-down {
 	background: #BBB;
 }
 /* avatar shapes */
-.mask-roundrect {
-	border-radius: 0.5rem;
-	border: var(--avatar-border) solid;
-}
-.mask-circle {
-	border-radius: 50%;
-	border: var(--avatar-border) solid;
-}
-.mask-squircle {
-	mask: alpha url('data:image/svg+xml,<svg viewBox="-5,-5 10,10" \
-preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\
-<path d="M0-5C+4-5+5-4+5-0S+4+5-0+5-5+4-5+0-4-5+0-5z"/></svg>'
-) 0 / 100% 100%;
-	position: relative;
+.avatar {
+	/*border: var(--avatar-border) solid;*/
+	filter:
+		drop-shadow(0 var(--avatar-border) currentColor)
+		drop-shadow(var(--avatar-border) 0 currentColor)
+		drop-shadow(calc(var(--avatar-border) * -1) 0 currentColor)
+		drop-shadow(0 calc(var(--avatar-border) * -1) currentColor);
+/*		drop-shadow(0 2px #053)
+		drop-shadow(2px 0 #086)
+		drop-shadow(-2px 0 #0B8)
+		drop-shadow(0 -2px #0FB);
+*/	
+	
+	/*filter:
+		drop-shadow(2px 0 #808)
+		drop-shadow(0 2px #606)
+		drop-shadow(-2px 0 #B0B)
+		drop-shadow(0 -2px #D0D);*/
+	
 	padding: var(--avatar-border);
 }
+.mask-roundrect > img {
+	border-radius: 0.5rem;
+}
+.mask-circle > img {
+	border-radius: 50%;
+}
+.mask-squircle > img {
+	clip-path: url('res/icons.svg#clip-squircle');
+	position: relative;
+}
+.mask-capsule-small > img {
+	clip-path: url('res/icons.svg#clip-capsule-small');
+	position: relative;
+}
+.mask-capsule-large > img {
+	clip-path: url('res/icons.svg#clip-capsule-large');
+	position: relative;
+}
+.mask-egg > img {
+	clip-path: url('res/icons.svg#clip-egg');
+	position: relative;
+}
+/*.mask-capsule-small::after {
+	display: block;
+	display: var(--avatar-border, none);
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: currentColor;
+	clip-path: url('res/icons.svg#unclip-capsule-small');
+}
+
 .mask-squircle::after {
 	display: block;
 	display: var(--avatar-border, none);
 	content: "";
 	position: absolute;
-	background: currentColor;
-	top: 0; right: 0; bottom: 0; left: 0;
-	padding: inherit;
-	mask: alpha url('data:image/svg+xml,<svg viewBox="-10,-10 20,20" \
-preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\
-<path d="M-10-10H10V10H-10z M0-5C+4-5+5-4+5-0S+4+5-0+5-5+4-5+0-4-5+0-5z" fill-rule="evenodd" clip-rule="evenodd"/></svg>'
-) content-box padding-box center / 200% 200%;
 	z-index: 1;
-}
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: currentColor;
+	clip-path: url('res/icons.svg#unclip-squircle');
+}*/
 
 /* */
 main {
@@ -215,6 +301,11 @@ view-root {
 	text-decoration: unset;
 	color: unset;
 	vertical-align: top;
+}
+.project-label > span, .post-label > span {
+   height: 1.25em;
+   margin-top: 0.25em;
+   contain: none;
 }
 
 a:hover {	

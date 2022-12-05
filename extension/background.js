@@ -6,7 +6,7 @@ function make_filter(event, field, process) {
 	browser.webRequest[event].addListener(
 		(data)=>{
 			//HACK
-			if (!String(data.documentUrl).startsWith('file:///home/twelve/Code/cohost/index.html#'))
+			if (!String(data.documentUrl).startsWith('file://'))
 				return
 			let {[field]:headers} = data
 			return {[field]:process(headers)}

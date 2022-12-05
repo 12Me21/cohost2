@@ -110,38 +110,38 @@ self.__LOADABLE_LOADED_CHUNKS__ = {
 // replace some modules that were located in client.js and other files
 
 self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
-	20314(module, exports) {
-		exports.xy = block=>{
+	20314() {
+		this.xy = block=>{
 			if (block.type=='markdown')
 				return block.markdown.content
 			if (block.type=='attachment') {
-				const name = block.attachment.fileURL.split('/').pop();
+				const name = block.attachment.fileURL.split('/').pop()
 				return name ? `[image: ${decodeURIComponent(name)}]` : '[image]'
 			}
 		}
-		exports.D_ = block=>{
+		this.D_ = block=>{
 			return 'string'==typeof block?.markdown?.content
 		}
 	},
-	84879(module, exports, require) {
-		exports.ou = {
+	84879() {
+		this.ou = {
 			fromISO(str) {
 				return {toJSDate:()=>new Date(str)}
 			}
 		}
 	},
-	67905: function (m, exports, n) {
+	67905: function (m, e, n) {
 		let $45984 = n(45984)
-		exports.S = e=>{
+		this.S = e=>{
 			return String($45984.ZP.public.static.staticAsset({path: e}))
 		}
 	},
-	6087(module, exports) {
-		exports.F = null
+	6087() {
+		this.F = null
 	},
 	// eh
-	79829(m, exports, n) {
-		exports._v = (a, b, c)=>{
+	79829() {
+		this._v = (a, b, c)=>{
 			if (!Array.isArray(a))
 				return a
 			if ('function'==typeof b)
@@ -150,11 +150,11 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 		}
 	},
 	// iframely
-	67368(m, exports, n) {
+	67368(m, e, n) {
 		//let $79829 = n(79829)
 		//let $12800 = n(12800) no
 		//let $75516 = n(75516) no
-		exports.a = (e, t, n)=>{
+		this.a = (e, t, n)=>{
 			//const a = $79829._v(e, t, n)
 			//return $75516.r(a, $12800.z)
 		}
@@ -167,8 +167,8 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 			}
 		}
 	},
-	45984(m, exports) {
-		exports.ZP = {
+	45984() {
+		this.ZP = {
 			public: {
 				static: {
 					staticAsset({path}) {
@@ -184,34 +184,39 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 			},
 		}
 	},
-	94159(m, exports) {
+	94159() {
+		
+		const FRAG = this.Fragment = Symbol.for("react.fragment")
+		const MEMO = Symbol.for("react.fragment")
+		const FOWR = Symbol.for('react.forward_ref')
+		this.memo = (type, compare=null)=>({$$typeof: MEMO, type, compare})
+		this.forwardRef = (render)=>({$$typeof: FOWR, render})
+		
 		let N = {current: null}
-		exports.memo = (type, compare=null)=>{
-			return {
-				$$typeof: Symbol.for('react.memo'), type, compare,
-			}
-		}
-		exports.useContext = (e)=>{
-			return N.current.useContext(e)
-		}
-		exports.useEffect = (e, t)=>{
-			return N.current.useEffect(e, t)
-		}
-		const FRAG = Symbol.for("react.fragment")
-		exports.createElement = (name, attrs, ...contents)=>{
-			console.log('createelement?', name)
-			let x = name===FRAG ? document.createDocumentFragment() : document.createElement(name)
-			for (let attr in attrs) {
-				let val = attrs[attr]
-				if (attr=='className') {
-					x.className = val
-				} else if (attr=='dangerouslySetInnerHTML') {
-					x.innerHTML = val.__html
-				} else if (attr=='style' && val && typeof val == 'object') {
-					for (let prop in val)
-						x.style.setProperty(prop, val[prop])
-				} else
-					x.setAttribute(attr, val)
+		this.useContext = (e)=>N.current.useContext(e)
+		this.useEffect = (e, t)=>N.current.useEffect(e, t)
+		
+		this.createElement = (name, attrs, ...contents)=>{
+			let x
+			if (name===FRAG) {
+				x = document.createDocumentFragment()
+			} else if ('string'==typeof name) {
+				x = document.createElement(name)
+				for (let attr in attrs) {
+					let val = attrs[attr]
+					if (attr=='className') {
+						x.className = val
+					} else if (attr=='dangerouslySetInnerHTML') {
+						x.innerHTML = val.__html
+					} else if (attr=='style' && val && typeof val == 'object') {
+						for (let prop in val)
+							x.style.setProperty(prop, val[prop])
+					} else
+						x.setAttribute(attr, val)
+				}
+			} else {
+				console.log('createElement', name)
+				x = document.createElement('div')
 			}
 			for (let c of contents) {
 				if (c instanceof Node)
@@ -224,12 +229,6 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 					x.append(c)
 			}
 			return x
-		}
-		exports.Fragment = FRAG
-		exports.forwardRef = (render)=>{
-			return {
-				$$typeof: Symbol.for('react.forward_ref'), render,
-			}
 		}
 	},
 }])

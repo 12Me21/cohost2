@@ -22,11 +22,17 @@ window.addEventListener('DOMContentLoaded', ev=>{
 		for (let [i, t, u] of [
 			['home', "home", ''],
 			['notifications', "notifications", 'rc/project/notifications'],
+			['like', "your likes", 'rc/likes'],
+			['search', "search", 'rc/search'],
+			['profile', "profile", '-12'],
+			['drafts', "drafts", 'rc/posts/unpublished'],
+			['following', "following", 'rc/project/following'],
+			['followers', "followers", 'rc/project/followers'],
 			['login', "log in", 'rc/login'],
 		]) {
 			let a = NAV.render_link(u)
 			a.append(icon(i), t)
-			a.className = 'row'
+			a.className = 'row align'
 			$sidebar.append(a)
 		}
 	}

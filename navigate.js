@@ -5,7 +5,6 @@ class View {
 	$root = document.createElement('view-root')
 	async request() {}
 	render() {}
-	static match() {}
 }
 
 class Nav {
@@ -45,6 +44,10 @@ class Nav {
 	update_from_location() {
 		let fragment = this.read_location()
 		let match
+		if (fragment.endsWith("/")) {
+			fragment = fragment.slice(0, -1)
+			// todo: update address bar url here
+		}
 		let cls = this.views.find(cls=>{
 			match = cls.path_regex.exec(fragment)
 			return match
