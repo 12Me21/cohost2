@@ -184,12 +184,12 @@ mark-down {
 .post > h1 {
 	font-size: 1.25rem;
 	font-weight: bold;
-	margin: 0.5rem 0.5rem 0.25rem;
+	margin: 0.5rem 0.5rem 0rem;
 	border-bottom: 1px dashed silver;
 	padding-bottom: 0.25rem;
 }
 .post > mark-down {
-	--prose-margin: 0.25rem 0.75rem 0.75rem;
+	--prose-margin: 0.75rem 0.75rem 0.75rem;
 }
 
 :root {
@@ -351,4 +351,21 @@ aside {
 	white-space: pre-wrap;
 	border: solid;
 	padding: 1px 3px;
+}
+
+/* profile */
+
+/* todo: try to replicate the sitting thing */
+.profile-header > div > .avatar {
+	--avatar-size: 144px;
+	filter: none;
+	--avatar-border: initial;
+}
+.profile-header {
+	border-bottom: 1rem solid #3F9FA8;
+}
+.profile-display-name {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0.25rem;
 }

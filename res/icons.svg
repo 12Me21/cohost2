@@ -261,16 +261,15 @@ H 3
 		         z
 "/>
 	</clipPath>
-	<clipPath id="unclip-capsule-small" clipPathUnits="objectBoundingBox">
+	<symbol id="frame-capsule-small" viewBox="0 0 1 1">
 		<path d="
-		         M0 0H1V1H0z
 		         M .30859375 .19140625
 		         a .19140625 .19140625, 0 01 , .3828125 0
 		         v .6171875
 		         a .19140625 .19140625, 0 01 , -.3828125 0
 		         z
-" clip-rule="evenodd"/>
-	</clipPath>
+"/>
+	</symbol>
 	
 	<clipPath id="clip-capsule-large" clipPathUnits="objectBoundingBox">
 		<rect x=".19140625" width=".6171875" height="1" rx=".30859375"/>
