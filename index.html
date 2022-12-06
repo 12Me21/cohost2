@@ -4,6 +4,10 @@
 <title>co host 2</title>
 
 <script>
+	window.onpageshow = ev=>{
+		console.log('pageshow')
+	}
+
 	let messages = []
 	window.print = (m)=>{
 		console.log(m)

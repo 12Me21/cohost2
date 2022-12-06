@@ -360,6 +360,7 @@ aside {
 	--avatar-size: 144px;
 	filter: none;
 	--avatar-border: initial;
+	margin: 0.25rem;
 }
 .profile-header {
 	border-bottom: 1rem solid #3F9FA8;

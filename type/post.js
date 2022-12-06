@@ -85,24 +85,50 @@ class Post extends Entity {
 		
 		let content = elem('mark-down')
 		let sh = content.attachShadow({mode:'open'})
-		
 		let s = $prose_css.cloneNode(true)
 		s.disabled = false
+		sh.append(s)
+		
 		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
 		
-		let el, length = res.expandedLength
-		if (length)
-			el = res.expanded
-		else {
-			el = res.initial
-			length = res.initialLength
+		//console.log(res)
+		
+		let d
+		
+		if (res.initialLength) {
+			if (res.initialLength > 1)
+				d = res.initial.firstChild
+			else {
+				d = elem('div')
+				d.append(res.initial)
+			}
+		} else
+			d = elem('div')
+		
+		sh.append(d)
+		
+		if (res.expandedLength) {
+			let root = res.expanded
+			if (res.expandedLength > 1)
+				root.append(...root.firstChild.childNodes)
+			let nodes = [...root.childNodes]
+			let a = elem('a', 'read-more')
+			a.textContent = "read more"
+			a.onclick = ev=>{
+				console.log(ev)
+				let h = a.hasAttribute('data-open')
+				a.toggleAttribute('data-open')
+				if (h) {
+					root.append(...nodes)
+					a.textContent = "read more"
+				} else {
+					d.append(...nodes)
+					a.textContent = "read less"
+				}
+				
+			}
+			sh.append(a)
 		}
-		if (length == 1) {
-			let d = elem('div')
-			d.append(el)
-			el = d
-		}
-		sh.append(s, el)
 		
 		e.append(content)
 		

@@ -3,6 +3,29 @@
 	box-sizing: border-box;
 	/* default is: medium none currentColor; */
 	border: 0 solid currentColor;
+	
+	scrollbar-color: initial; /* this is inherited for some reason? */
+}
+
+.read-more {
+	text-decoration: none;
+	color: rgb(131 37 79);
+	font-weight: 700;
+	font-size: .875rem;
+	line-height: 1.25rem;
+	margin-bottom: .75rem;
+	background-color: white;
+	cursor: pointer;
+	display: block;
+	box-sizing: border-box;
+	cursor: pointer;
+	margin: 0 1rem 0.75rem;
+}
+.read-more:not([data-open]) {
+	border-top: 2px dotted;	
+}
+.read-more:hover {
+	text-decoration: underline;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
@@ -98,8 +121,8 @@ p > img:not([style]) {
 		'apple color emoji', 'segoe ui emoji', 'segoe ui symbol', 'noto color emoji';
 }
 
-/* <a> */
 a {
+	color: inherit;
 	text-decoration: underline;
 	font-weight: 500;
 }
@@ -302,7 +325,7 @@ p {
 }
 /* 🟥 */
 :where(hr, h2, h3, h4) + *,
-:host > div > :first-child {
+:host > div > *:first-child {
 	margin-top: 0 !important;
 }
 /* 🟥 */
@@ -314,6 +337,6 @@ p {
 	padding-right: 0 !important;
 }
 /* 🟥 */
-:host > div > :last-child {
+:host > div > *:last-child {
 	margin-bottom: 0 !important;
 }
