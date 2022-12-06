@@ -19,7 +19,7 @@ class NotifView extends View {
 	}
 	render() {
 		this.$root.className += ' scroller'
-		let n = document.createElement('div')
+		let n = elem('div')
 		this.$root.append(n)
 		for (let notif of this.data.notifications) {
 			n.append(notif.render())

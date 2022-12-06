@@ -14,18 +14,17 @@ class Notif {
 			this.toPost = Post.map(maps.posts, data.toPostId)
 	}
 	
-	render(ic, color, action) {
-		let e = document.createElement('div')
-		e.className = 'notification row'
+	render(ic, color, action="["+this.type+"]") {
+		let e = elem('div', 'notification row align wrap')
 		
-		ic = icon(ic)
-		ic.style.color = color
+		ic = icon(ic, true)
+		if (color)
+			ic.style.color = color
 		
 		let fp = this.fromProjects
 		let from = fp[0].render_link()
 		
-		let t = document.createElement('span')
-		t.className = 'pre'
+		let t = elem('span', 'pre')
 		if (fp.length > 1)
 			t.append(` and ${fp.length-1} others`)
 		t.append(" "+action+" ")
@@ -35,10 +34,9 @@ class Notif {
 	}
 }
 
-// I believe the old 'like' and 'share' types are no longer used.
-
+// have the 'like' and 'follow' types been totally replaced by their grouped forms?
 Notif.Sub = {
-	like: class LikeNotif extends Notif {
+	like: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps, true)
 			this.relationshipId = data.relationshipId
@@ -49,7 +47,7 @@ Notif.Sub = {
 			return e
 		}
 	},
-	groupedLike: class GroupedLikeNotif extends Notif {
+	groupedLike: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps, true)
 			this.relationshipIds = data.relationshipIds
@@ -61,7 +59,8 @@ Notif.Sub = {
 		}
 	},
 	
-	share: class ShareNotif extends Notif {
+	// transparent shares use 'groupedShare', non-transparent shares still use 'share'
+	share: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps, true)
 			this.sharePost = Post.map(maps.posts, data.sharePostId)
@@ -73,7 +72,7 @@ Notif.Sub = {
 			return e
 		}
 	},
-	groupedShare: class GroupedLikeNotif extends Notif {
+	groupedShare: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps, true)
 			this.sharePosts = Post.maps(maps.posts, data.sharePostIds)
@@ -86,7 +85,7 @@ Notif.Sub = {
 		}
 	},
 	
-	comment: class CommentNotif extends Notif {
+	comment: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps, true)
 			this.comment = Comment.map(maps.comments, data.commentId)
@@ -99,7 +98,17 @@ Notif.Sub = {
 			return e
 		}
 	},
-	follow: class ShareNotif extends Notif {
+	
+	follow: class extends Notif {
+		constructor(data, maps) {
+			super(data, maps)
+		}
+		render() {
+			let e = super.render('follow-filled', 'darkorchid', "followed you")
+			return e
+		}
+	},
+	groupedFollow: class extends Notif {
 		constructor(data, maps) {
 			super(data, maps)
 		}

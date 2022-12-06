@@ -25,27 +25,21 @@ class Project extends Entity {
 	}
 	
 	render_avatar() {
-		let img = document.createElement('img')
+		let img = elem('img')
 		img.src = this.avatarURL
-		let outer = document.createElement('div')
-		outer.className = 'avatar'
-		outer.className += " mask-"+this.avatarShape
+		let outer = elem('div', `avatar mask-${this.avatarShape}`)
 		outer.append(img)
 		return outer
 	}
 	
 	render_link() {
-		let av = this.render_avatar()
-		let e = document.createElement('span')
-		e.className = 'name'
-		let p = document.createElement('span')
-		p.className = 'pre'
+		let p = elem('span', 'pre')
 		p.append(this.handle)
+		let e = elem('span', 'name')
 		e.append("@", p)
-		let q = document.createElement('a')
-		q.href = NAV.render_link(this.handle)
-		q.className = 'project-label'
-		q.append(av, " ", e)
-		return q
+		let a = elem('a', 'project-label align')
+		a.href = NAV.render_link(this.handle)
+		a.append(this.render_avatar(), " ", e)
+		return a
 	}
 }

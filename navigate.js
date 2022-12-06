@@ -29,9 +29,12 @@ class Nav {
 			view.location = location
 			await view.request()
 			this.current = view
-			this.set_status('drawing...')
+			this.set_status('rendering...')
+			await {then:y=>window.setTimeout(y)}
 			$title.replaceChildren(view.title())
 			view.render()
+			this.set_status('layout...')
+			await {then:y=>window.setTimeout(y)}
 			$main.replaceChildren(view.$root)
 			this.set_status('ok')
 			ok = true

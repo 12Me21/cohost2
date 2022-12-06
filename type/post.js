@@ -45,74 +45,77 @@ class Post extends Entity {
 	}
 	
 	render() {
-		let x = document.createElement('article')
-		x.className = 'post col'
+		let e = elem('article', 'post col')
 		
-		let name = document.createElement('div')
+		let name = elem('div', 'row align wrap')
 		name.append(this.postingProject.render_link())
-		x.append(name)
+		e.append(name)
 		
 		if (this.transparentShareOfPost) {
 			name.prepend(icon('share'))
-			x.append(this.transparentShareOfPost.render())
-			return x
+			e.append(this.transparentShareOfPost.render())
+			return e
 		}
 		
 		if (this.shareTree.length) {
 			name.prepend(icon('share'))
 			for (let post of this.shareTree)
-				x.append(post.render())
+				e.append(post.render())
 		}
 		
 		if (this.headline) {
-			let title = document.createElement('h1')
+			let title = elem('h1')
 			title.append(this.headline)
-			x.append(title)
+			e.append(title)
 		}
 		
 		let at = this.blocks.filter(x=>x.type=='attachment')
 		if (at.length) {
-			let imgs = document.createElement('div')
-			imgs.className = 'row images'
+			let imgs = elem('div', 'images row align')
 			for (let {attachment:{previewURL, fileURL, altText}} of at) {
-				let img = document.createElement('img')
+				let img = elem('img')
 				img.src = previewURL
 				img.alt = altText
 				img.title = altText
 				img.loading = 'lazy'
 				imgs.append(img)
 			}
-			x.append(imgs)
+			e.append(imgs)
 		}
 		
-		let content = document.createElement('mark-down')
+		let content = elem('mark-down')
 		let sh = content.attachShadow({mode:'open'})
 		
 		let s = $prose_css.cloneNode(true)
 		s.disabled = false
 		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
-		let st = res.initial
-		if (res.initialLength == 1) {
-			let d = document.createElement('div')
-			d.append(st)
-			st = d
+		
+		let el, length = res.expandedLength
+		if (length)
+			el = res.expanded
+		else {
+			el = res.initial
+			length = res.initialLength
 		}
-		sh.append(s, st)
+		if (length == 1) {
+			let d = elem('div')
+			d.append(el)
+			el = d
+		}
+		sh.append(s, el)
 		
-		x.append(content)
+		e.append(content)
 		
-		return x
+		return e
 	}
 	
 	render_link() {
-		let p = document.createElement('span')
-		p.className = 'pre name'
+		let p = elem('span', 'pre name')
 		p.append(this.headline || this.filename)
-		let q = document.createElement('a')
 		let url = this.singlePostPageUrl.replace("https://cohost.org/", "")
-		q.href = NAV.render_link(url)
-		q.className = 'post-label'
-		q.append(p)
-		return q
+		let a = elem('a', 'post-label')
+		a.href = NAV.render_link(url)
+		a.append(p)
+		return a
 	}
 }

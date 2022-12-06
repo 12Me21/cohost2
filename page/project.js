@@ -29,7 +29,7 @@ class ProjectView extends View {
 	}
 	render() {
 		this.$root.className += ' scroller'
-		let n = document.createElement('div')
+		let n = elem('div')
 		this.$root.append(n)
 		for (let post of this.data.posts)
 			n.append(post.render())

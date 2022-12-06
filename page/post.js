@@ -23,7 +23,7 @@ class PostView extends View {
 	}
 	render() {
 		this.$root.className += ' scroller'
-		let n = document.createElement('div')
+		let n = elem('div')
 		this.$root.append(n)
 		let p = this.data.post.render()
 		n.append(p)

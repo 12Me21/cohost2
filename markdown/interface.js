@@ -214,8 +214,11 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 					} else
 						x.setAttribute(attr, val)
 				}
+			} else if ('function'==typeof name) {
+				x = name(attrs)
+				return x // i think?
 			} else {
-				console.log('createElement', name)
+				console.log('createElement ?', name, attrs, contents)
 				x = document.createElement('div')
 			}
 			for (let c of contents) {

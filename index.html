@@ -10,10 +10,18 @@
 		messages.push(m)
 	}
 	window.onerror = (message, source, line, col, error)=>{
-		print(`💣 ${message}\n${source}:${line}`)
+		if (error instanceof Error) {
+			print(`💣 ${error}\n${error.stack}`)
+		} else {
+			print(`💣 ${message}\n${source}:${line}`)
+		}
 	}
 	window.onunhandledrejection = ev=>{
-		print(`💔 ${ev.reason}`)
+		if (ev.reason instanceof Error) {
+			print(`💔 ${ev.reason}\n${ev.reason.stack}`)
+		} else {
+			print(`💔 ${ev.reason}`)
+		}
 	}
 	let dprint = (m)=>{print(m)}
 	Object.defineProperty(window, 'log', {
@@ -53,8 +61,8 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 
 <link disabled rel=stylesheet href=markdown/prose.css id=$prose_css>
 <script src=markdown/interface.js></script>
-<script async src=markdown/cohost-2813.js></script>
-<script async src=markdown/cohost-1624.js></script>
+<script async src=markdown/b-cohost-2813.js></script>
+<script async src=markdown/b-cohost-1624.js></script>
 
 <script src=session.js></script>
 <script src=navigate.js></script>
@@ -77,7 +85,7 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 
 <body class='row'>
 <div class='col fill'>
-	<header class='row gaps'>
+	<header class='row gaps align'>
 		<span class='fill' id=$title>co host 2 ¿?</span>
 		<div id=$status></div>
 	</header>

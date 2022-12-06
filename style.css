@@ -66,16 +66,18 @@ html, body {
 	overflow: hidden;
 	contain: strict;
 }
+
+
+/* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
+body, body > *, main, view-root, .scroller, .scroller > * {
+	background: white;
+}
+
 body {
 	border: 1rem solid #3FBFA8;
 }
 #\$sidebar {
 	border-bottom: 1rem solid #3F9FA8;
-}
-
-/* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
-body, main, view-root, .scroller, .scroller > * {
-	background: white;
 }
 
 /* flex system */
@@ -86,12 +88,11 @@ body, main, view-root, .scroller, .scroller > * {
 	min-width: 0;
 	min-height: 0;
 }
-.align {
-	align-items: center;
-}
-.fill {
-	flex: 1
-}
+.fill { flex: 1 }
+.align { align-items: center }
+.wrap { flex-wrap: wrap }
+.wrap > * { max-width: 100% } /* todo: dont think this is safe */
+
 .row.gaps > :nth-child(n+2) {
 	margin-left: var(--gap);
 }
@@ -113,7 +114,6 @@ header {
 	color: white;
 	padding: 0.5rem;
 	--gap: 8px;
-	align-items: center;
 	height: 32px;
 	border-right: 1em solid #3F9FA8;
 }
@@ -132,13 +132,17 @@ header {
 .icon {
 	width: 1.5rem;
 	height: 1.5rem;
+	flex-shrink: 0 !important;
+}
+.icon-20 {
+	width: 20px;
+	height: 20px;
 }
 
 /* notifications */
 .notification {
 	margin: 0.25rem;
 	border: 1px solid;
-	align-items: center;
 	padding: 2px;
 }
 .notification > .icon {
@@ -157,7 +161,6 @@ header {
 	/*flex: 0 1 50%;*/
 	flex: 0 1 auto;
 	box-sizing: border-box;
-	align-self: center;
 	max-height: 100%;
 	border: var(--image-border);
 }
@@ -177,8 +180,6 @@ mark-down {
 	background: hsl(2.8rad, 100%, 95%);
 	border-radius: 1rem;
 	box-shadow: 0 1px 1px #0008;
-	display: flex;
-	align-items: center;
 }
 .post > h1 {
 	font-size: 1.25rem;
@@ -211,11 +212,14 @@ mark-down {
 /* avatar shapes */
 .avatar {
 	/*border: var(--avatar-border) solid;*/
+	/* ugh why isn't there a real way to do outlines */
+	padding: var(--avatar-border);
+	
 	filter:
-		drop-shadow(0 var(--avatar-border) currentColor)
-		drop-shadow(var(--avatar-border) 0 currentColor)
-		drop-shadow(calc(var(--avatar-border) * -1) 0 currentColor)
-		drop-shadow(0 calc(var(--avatar-border) * -1) currentColor);
+		drop-shadow(0 var(--avatar-border))
+		drop-shadow(var(--avatar-border) 0)
+		drop-shadow(calc(var(--avatar-border) * -1) 0)
+		drop-shadow(0 calc(var(--avatar-border) * -1));
 /*		drop-shadow(0 2px #053)
 		drop-shadow(2px 0 #086)
 		drop-shadow(-2px 0 #0B8)
@@ -228,7 +232,6 @@ mark-down {
 		drop-shadow(-2px 0 #B0B)
 		drop-shadow(0 -2px #D0D);*/
 	
-	padding: var(--avatar-border);
 }
 .mask-roundrect > img {
 	border-radius: 0.5rem;
@@ -287,8 +290,9 @@ view-root {
 	overflow-y: scroll;
 }
 
+/* all elements with user content  must be tied up */
 .pre {
-	white-space: pre;
+	white-space: pre-wrap;
 	unicode-bidi: embed;
 }
 
@@ -303,9 +307,9 @@ view-root {
 	vertical-align: top;
 }
 .project-label > span, .post-label > span {
-   height: 1.25em;
+   /*height: 1.25em;
    margin-top: 0.25em;
-   contain: none;
+   contain: none;*/
 }
 
 a:hover {	
@@ -314,7 +318,6 @@ a:hover {
 
 .project-label {
 	display: inline-flex;
-	align-items: center;
 }
 .project-label > .avatar {
 	margin-right: 0.25em;

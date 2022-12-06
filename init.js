@@ -14,9 +14,9 @@ window.addEventListener('DOMContentLoaded', ev=>{
 	}
 	messages = null
 	
-	log='hello'
-	log('uwu')
-	log`owo`
+	log='hi'
+	//log('uwu')
+	//log`owo`
 	
 	{
 		for (let [i, t, u] of [

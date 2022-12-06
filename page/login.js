@@ -6,27 +6,27 @@ class LoginView extends View {
 		return "Log In"
 	}
 	render() {
-		let x = document.createElement('form')
+		let x = elem('form')
 		x.method='dialog'
 		
-		let e = document.createElement('input')
+		let e = elem('input')
 		e.type='email'
 		e.name='email'
 		e.placeholder="Email"
 		
-		let b = document.createElement('button')
+		let b = elem('button')
 		b.append('log in')
 		
-		let p = document.createElement('input')
+		let p = elem('input')
 		p.type='password'
 		p.name='password'
 		p.placeholder="Password"
 		p.autocomplete='current-password'
 		
-		let s = document.createElement('label')
+		let s = elem('label')
 		s.title="Show Password"
 		
-		let c = document.createElement('input')
+		let c = elem('input')
 		c.type='checkbox'
 		c.autocomplete='off'
 		c.onchange = ev=>{
@@ -35,7 +35,10 @@ class LoginView extends View {
 		
 		s.append('👁️', c)
 		
-		x.append(e, p, s, b)
+		let pw = elem('div', 'row align')
+		pw.append(p, s)
+		
+		x.append(e, pw, b)
 		
 		x.onsubmit = async (ev)=>{
 			ev.preventDefault()
