@@ -29,10 +29,41 @@ class ProjectView extends View {
 	}
 	render() {
 		this.$root.className += ' scroller'
+		// profile
+		let p = this.data.project
+		let e = elem('div', 'profile-header')
+		e.append(p.render_avatar())
+		if (p.displayName) {
+			let dn = elem('div', 'profile-display-name')
+			dn.append(pre(p.displayName))
+			e.append(dn)
+		}
+		e.append(p.render_handle())
+		if (p.dek) {
+			let de = elem('div', 'profile-headline')
+			de.append(pre(p.dek))
+			e.append(de)
+		}
+		if (p.pronouns) {
+			let pr = elem('div', 'profile-pronouns')
+			pr.append(icon('profile-pronouns', true), pre(p.pronouns))
+			e.append(pr)
+		}
+		if (p.url) {
+			let pr = elem('div', 'profile-link')
+			pr.append(icon('profile-link', true), pre(p.url))
+			e.append(pr)
+		}
+		// todo: needs parsing
+		if (p.description) {
+		}
+		this.$root.append(e)
+		
+		// posts
 		let n = elem('div')
-		this.$root.append(n)
 		for (let post of this.data.posts)
 			n.append(post.render())
+		this.$root.append(n)
 	}
 }
 

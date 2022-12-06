@@ -32,11 +32,14 @@ class Project extends Entity {
 		return outer
 	}
 	
-	render_link() {
-		let p = elem('span', 'pre')
-		p.append(this.handle)
+	render_handle() {
 		let e = elem('span', 'name')
-		e.append("@", p)
+		e.append("@", pre(this.handle))
+		return e
+	}
+	
+	render_link() {
+		let e = this.render_handle()
 		let a = elem('a', 'project-label align')
 		a.href = NAV.render_link(this.handle)
 		a.append(this.render_avatar(), " ", e)

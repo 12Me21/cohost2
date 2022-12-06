@@ -53,3 +53,9 @@ function icon(name, small) {
 		svg.classList.add('icon-20')
 	return svg
 }
+
+function pre(text) {
+	let s = elem('span', 'pre')
+	s.textContent = text
+	return s
+}
