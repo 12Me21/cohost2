@@ -17,6 +17,7 @@ class PostView extends View {
 		id = parseInt(id)
 		let data = await SESS.request_post(handle, id)
 		this.data = data
+		await Markdown.ready
 	}
 	title() {
 		return "Post"

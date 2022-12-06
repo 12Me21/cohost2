@@ -89,14 +89,16 @@ class Post extends Entity {
 		s.disabled = false
 		sh.append(s)
 		
-		let res = PARSER.e2(this.blocks, new Date(this.publishedAt), {})
+		let res = Markdown.parse_post(this)
 		
 		//console.log(res)
-		
+		//return
 		let d
 		
 		if (res.initialLength) {
-			if (res.initialLength > 1)
+			let fm = this.blocks.find(x=>x.type=='markdown')?.markdown?.content
+			
+			if (!/^<div\b/.test(fm) && res.initial.firstChild.tagName=='DIV') // i dont fucking know
 				d = res.initial.firstChild
 			else {
 				d = elem('div')
@@ -109,7 +111,7 @@ class Post extends Entity {
 		
 		if (res.expandedLength) {
 			let root = res.expanded
-			if (res.expandedLength > 1)
+			//if (res.expandedLength > 1)
 				root.append(...root.firstChild.childNodes)
 			let nodes = [...root.childNodes]
 			let a = elem('a', 'read-more')

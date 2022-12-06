@@ -19,7 +19,7 @@ class DashboardView extends View {
 		// todo: dont rely on global SESS.
 		// just specify which request to call, instead.
 		this.data = await SESS.request_dashboard()
-		await PARSER
+		await Markdown.ready
 	}
 	render() {
 		this.$root.className += ' scroller'

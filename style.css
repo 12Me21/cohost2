@@ -154,7 +154,7 @@ header {
 .images {
 	height: var(--embed-height);
 	justify-content: space-around;
-	margin: 0.25rem 0.5rem 0.5rem;
+	margin: 0.5rem 0.5rem 0rem;
 }
 
 .images > * {

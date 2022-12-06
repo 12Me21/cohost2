@@ -23,6 +23,7 @@ class ProjectView extends View {
 		let [handle] = this.location
 		let data = await SESS.request_project(handle)
 		this.data = data
+		await Markdown.ready
 	}
 	title() {
 		return "@"+this.data.project.handle

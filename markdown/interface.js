@@ -1,54 +1,87 @@
 'use strict'
 
-let need_blocks = 3
-let ready, fail
+class Markdown {
+	static f_ready = null
+	static f_fail = null
+	static need_blocks = 3
+	static module = null
+	static ready = new Promise((y,n)=>{
+		this.f_ready = y
+		this.f_fail = n
+	})
+	static parse_post(post) {
+		return this.module.e2(post.blocks, new Date(post.publishedAt), {})
+	}
+}
 
-let PARSER = new Promise((y,n)=>{
-	ready = y
-	fail = n
-})
+
 
-const n = (id)=>{
-	if (n.c[id])
-		return n.c[id].exports
-	let lm = n.m[id]
+//let stack = []
+//let deps = {}
+//let usedby = {}
+
+const Require = function(id) {
+	/*if (stack.length) {
+		let current = stack[stack.length-1]
+		
+		let m = Require.m[id]
+		let c = Require.m[current]
+		if (m._where != c._where) {
+			let ub = (usedby[id] ||= [])
+			ub.push(current)
+			
+			deps[current].push(id)
+		} else {
+			
+		}
+	}*/
+	
+	if (Require.c[id])
+		return Require.c[id].exports
+	let lm = Require.m[id]
 	if (!lm)
 		throw new Error("module #"+id+" not found")
-	let module = n.c[id] = {
+	let module = Require.c[id] = {
 		i: id,
 		l: false,
 		exports: {},
 	}
-	lm.call(module.exports, module, module.exports, n)
+	//stack.push(id)
+	//deps[id] = []
+	lm.call(module.exports, module, module.exports, Require)
+	//stack.pop()
 	module.l = true
 	return module.exports
 }
 
-n.m = {} // non-loaded modules
-n.c = {} // loaded modules
+Require.m = {} // non-loaded modules
+Require.c = {} // loaded modules
 
-n.nmd = function (e) {
+// ?
+Require.nmd = function(e) {
 	e.paths = []
 	if (!e.children)
 		e.children = []
 	return e
 }
 //
-n.o = (e, t)=>{
-	return Object.prototype.hasOwnProperty.call(e, t)
-}
-// define getters on `e`
-n.d = (exports, t, r)=>{
+Require.o = {}.hasOwnProperty.call.bind({}.hasOwnProperty)
+// export
+Require.d = function(exports, t, r) {
 	if ('string' == typeof t) {
-		if (!n.o(exports, t))
+		if (!Require.o(exports, t))
 			Object.defineProperty(exports, t, {enumerable: true, get: r})
 	} else {
-		// i dont actually know where this is defined
-		Object.defineProperties(exports, Object.fromEntries(Object.entries(t).map(([k,v])=>[k,{enumerable:true, get:v}])))
+		for (let n in t)
+			if (Require.o(t, n) && !Require.o(exports, n))
+				Object.defineProperty(exports, n, {
+					enumerable: true,
+					get: t[n]
+				})
 	}
 }
 // set as es6 module
-n.r = (exports)=>{
+Require.r = function(exports) {
 	Object.defineProperties(exports, {
 		[Symbol.toStringTag]: {value: 'Module'},
 		__esModule: {value: true},
@@ -60,47 +93,48 @@ n.r = (exports)=>{
 // 2 - define properties
 // 4 - skip everything if module already init as es6
 // 8 - don't init as es6
-n.t = (e, t)=>{
+Require.t = function(e, t) {
 	if (1 & t)
-		e = n(e)
+		e = Require(e)
 	if (8 & t)
 		return e
 	if (4 & t)
 		if (e && e.__esModule)
 			return e
 	let r = Object.create(null)
-	n.r(r)
+	Require.r(r)
 	Object.defineProperty(r, 'default', {enumerable: true, value: e})
 	if (2 & t)
 		if ('string' != typeof e)
 			for (let o in e)
-				n.d(r, o, ()=>{e[o]})
+				Require.d(r, o, ()=>{e[o]})
 	return r
 }
 // create a function that returns the module ?
-// and set its \.a field to a copy of the module
-n.n = (module)=>{
+// and set its .a field to a copy of the module
+Require.n = function(module) {
 	let t = module?.__esModule ? ()=>module.default : ()=>module
-	n.d(t, 'a', t)
+	Require.d(t, 'a', t)
 	return t
 }
 // ?
-n.p = ''
+Require.p = ''
 
 self.__LOADABLE_LOADED_CHUNKS__ = {
 	push([ids,map]) {
 		try {
 			for (let id in map) {
-				if (n.m[id])
+				if (Require.m[id])
 					continue
-				n.m[id] = map[id]
+				Require.m[id] = map[id]
+				map[id]._where = ids
 			}
-			need_blocks--
-			if (need_blocks==0) {
-				ready(PARSER = n(21624))
+			if (--Markdown.need_blocks <= 0) {
+				Markdown.module = Require(21624)
+				Markdown.f_ready()
 			}
 		} catch (e) {
-			fail(e)
+			Markdown.f_fail(e)
 		}
 	}
 }
@@ -130,10 +164,10 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 			}
 		}
 	},
-	67905: function (m, e, n) {
-		let $45984 = n(45984)
-		this.S = e=>{
-			return String($45984.ZP.public.static.staticAsset({path: e}))
+	67905: function (m, e, require) {
+		let $45984 = require(45984)
+		this.S = x=>{
+			return String($45984.ZP.public.static.staticAsset({path: x}))
 		}
 	},
 	6087() {
@@ -150,10 +184,10 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 		}
 	},
 	// iframely
-	67368(m, e, n) {
-		//let $79829 = n(79829)
-		//let $12800 = n(12800) no
-		//let $75516 = n(75516) no
+	67368(m, e, require) {
+		//let $79829 = require(79829)
+		//let $12800 = require(12800) no
+		//let $75516 = require(75516) no
 		this.a = (e, t, n)=>{
 			//const a = $79829._v(e, t, n)
 			//return $75516.r(a, $12800.z)
@@ -185,7 +219,6 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 		}
 	},
 	94159() {
-		
 		const FRAG = this.Fragment = Symbol.for("react.fragment")
 		const MEMO = Symbol.for("react.fragment")
 		const FOWR = Symbol.for('react.forward_ref')
@@ -197,6 +230,7 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 		this.useEffect = (e, t)=>N.current.useEffect(e, t)
 		
 		this.createElement = (name, attrs, ...contents)=>{
+			//console.log('createElement', name, attrs, ...contents)
 			let x
 			if (name===FRAG) {
 				x = document.createDocumentFragment()
@@ -221,6 +255,7 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 				console.log('createElement ?', name, attrs, contents)
 				x = document.createElement('div')
 			}
+			
 			for (let c of contents) {
 				if (c instanceof Node)
 					x.append(c)
