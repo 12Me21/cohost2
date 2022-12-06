@@ -83,17 +83,20 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 <script src=page/dashboard.js></script>
 <script src=page/project.js></script>
 
-<script src=init.js></script>
+<script defer src=init.js></script>
 
 <!-- =============================================================== -->
 
 <body class='row'>
-<div class='col fill'>
+<div class='fill' id=$left>
 	<header class='row gaps align'>
 		<span class='fill' id=$title>co host 2 ¿?</span>
 		<div id=$status></div>
 	</header>
-	<main class='fill' id=$main></main>
+	<main id=$main></main>
+	<figure id=$gallery hidden>
+		<figcaption class='pre' id=$gallery_label></figcaption>	
+	</figure>
 </div>
 <aside style='width:30vw' class='col'>
 	<div id=$sidebar class='col'>

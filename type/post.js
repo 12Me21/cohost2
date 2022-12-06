@@ -53,6 +53,7 @@ class Post extends Entity {
 		
 		if (this.transparentShareOfPost) {
 			name.prepend(icon('share'))
+			e.classList.add('transparent-share')
 			e.append(this.transparentShareOfPost.render())
 			return e
 		}

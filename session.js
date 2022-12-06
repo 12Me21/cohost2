@@ -112,5 +112,3 @@ class Session {
 		return data
 	}
 }
-
-window.SESS = new Session()

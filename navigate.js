@@ -33,6 +33,7 @@ class Nav {
 			this.set_status('rendering...')
 			await {then:y=>window.setTimeout(y)}
 			$title.replaceChildren(view.title())
+			gallery_show(null)
 			view.render()
 			
 			this.set_status('layout...')

@@ -59,3 +59,19 @@ function pre(text) {
 	s.textContent = text
 	return s
 }
+
+let gallery_placeholder = document.createElement('div')
+let gallery_image = null
+function gallery_show(img) {
+	if (gallery_image) {
+		gallery_placeholder.replaceWith(gallery_image)
+		$gallery_label.textContent = ""
+	}
+	if (img) {
+		img.replaceWith(gallery_placeholder)
+		$gallery.append(img)
+		$gallery_label.textContent = img.alt
+	}
+	gallery_image = img
+	$gallery.hidden = !img
+}
