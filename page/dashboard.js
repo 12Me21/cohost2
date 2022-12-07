@@ -26,7 +26,7 @@ class DashboardView extends View {
 		let n = elem('div')
 		this.$root.append(n)
 		for (let post of this.data.posts)
-			n.append(post.render())
+			n.append(post.render_chain())
 	}
 }
 

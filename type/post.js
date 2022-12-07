@@ -44,25 +44,44 @@ class Post extends Entity {
 		}
 	}
 	
-	render() {
-		let e = elem('article', 'post col')
-		
-		let name = elem('div', 'row align wrap')
-		name.append(this.postingProject.render_link())
-		e.append(name)
-		
-		if (this.transparentShareOfPost) {
+	render_chain() {
+		let tsp = this.transparentShareOfPost
+		if (tsp) {
+			let e = tsp.render_chain()
+			let name = elem('div', 'post-header row align wrap')
+			name.append(this.postingProject.render_link())
 			name.prepend(icon('share'))
-			e.classList.add('transparent-share')
-			e.append(this.transparentShareOfPost.render())
+			e.append(name)
 			return e
 		}
 		
+		let e = elem('div', 'post-chain col')
+		
 		if (this.shareTree.length) {
-			name.prepend(icon('share'))
 			for (let post of this.shareTree)
 				e.append(post.render())
 		}
+		
+		e.append(this.render())
+		
+		return e
+	}
+	
+	render() {
+		let name = elem('div', 'post-header row align wrap')
+		name.append(this.postingProject.render_link())
+		
+		let tsp = this.transparentShareOfPost
+		if (tsp) {
+			let e = tsp.render()
+			name.prepend(icon('share'))
+			e.append(name)
+			return e
+		}
+		
+		let e = elem('article', 'post col')
+		
+		e.append(name)
 		
 		if (this.headline) {
 			let title = elem('h1')

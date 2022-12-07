@@ -37,6 +37,12 @@
 	--image-border: 1px solid silver;
 	--embed-height: 20vh;
 	
+	--lighter: #CFEADD; /* maybe: #CFEAD9. darker: #B0DFC6. old: hsl(2.8rad, 100%, 95%)*/
+	--light: #87D3B1; /* old: #87D3B1*/
+	--mid: #43C8A6; /* old: #3FBFA8*/
+	--dark: #3FA8A2; /* old: #3F9FA8*/
+		
+	
 	--tw-prose-body: #374151;
 	--tw-prose-headings: #111827;
 	--tw-prose-lead: #4b5563;
@@ -59,7 +65,7 @@
 * {
 	contain: content;
 	margin: 0;
-	scrollbar-color: white #3F9FA8;
+	scrollbar-color: white var(--dark);
 }
 
 /* viewport */
@@ -73,14 +79,17 @@ html, body {
 
 /* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
 body, body > *, main, view-root, .scroller, .scroller > * {
-	background: white;
+	background: inherit;
+}
+main {
+	background: var(--dark);
 }
 
 body {
-	border: 1rem solid #3FBFA8;
+	border: 1rem solid var(--mid);
 }
 #\$sidebar {
-	border-bottom: 1rem solid #3F9FA8;
+	border-bottom: 1rem solid var(--dark);
 }
 
 /* flex system */
@@ -117,12 +126,12 @@ a:hover {
 
 /* header */
 header {
-	background: linear-gradient(180.5deg, #87D3B1 0 30%, #3FBFA8 0 70%, #3F9FA8 0 100%);
+	background: linear-gradient(180.5deg, var(--light) 0 30%, var(--mid) 0 70%, var(--dark) 0 100%);
 	color: white;
 	padding: 0.5rem;
 	--gap: 8px;
 	height: 32px;
-	border-right: 1em solid #3F9FA8;
+	border-right: 1em solid var(--dark);
 }
 #\$title {
 	font-weight: bold;
@@ -177,18 +186,35 @@ mark-down {
 	display: block;
 }
 
-.post {
-	margin: 0.25rem;
-	border: 1px solid;
+.post-chain {
+	background: var(--dark);
 	--avatar-size: 24px;
-	border-radius: 1rem 1rem 0.5rem 0.5rem;
 }
-.post > :first-child {
+
+.post {
+	background: white;
+	--avatar-size: 24px;
+}
+
+.post-chain > :nth-child(n+2) {
+	margin-top: 3px;
+}
+
+.post-chain, .post:not(.post-chain > *) {
+	margin: 1rem 0.25rem;
+	border-radius: 1rem /* 1rem 1rem 0.5rem 0.5rem; */
+}
+
+.post-header {
 	padding: 0.5rem;
-	background: hsl(2.8rad, 100%, 95%);
-	border-radius: 1rem;
+	background: var(--lighter);
 	box-shadow: 0 1px 1px #0008;
 }
+
+.post-header:not(.post:first-child > *) {
+	/*box-shadow: 0 1px 1px #0008, inset 0 2px 0px 1px var(--dark);*/
+}
+
 .post > h1 {
 	font-size: 1.25rem;
 	font-weight: bold;
@@ -198,10 +224,6 @@ mark-down {
 }
 .post > mark-down {
 	--prose-margin: 0.75rem 0.75rem 0.75rem;
-}
-.transparent-share > .post {
-	margin: 0;
-	border: none;
 }
 
 :root {
@@ -366,7 +388,7 @@ view-root {
 	margin: 0.25rem;
 }
 .profile-header {
-	border-bottom: 1rem solid #3F9FA8;
+	border-bottom: 1rem solid var(--dark);
 }
 .profile-display-name {
 	font-size: 1.5em;

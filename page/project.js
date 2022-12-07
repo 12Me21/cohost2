@@ -71,7 +71,7 @@ class ProjectView extends View {
 		// posts
 		let n = elem('div')
 		for (let post of this.data.posts)
-			n.append(post.render())
+			n.append(post.render_chain())
 		this.$root.append(n)
 	}
 }
