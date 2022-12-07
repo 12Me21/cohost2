@@ -125,7 +125,7 @@ a:hover {
 
 /* header */
 header {
-	background: linear-gradient(180.5deg, var(--light) 0 30%, var(--mid) 0 70%, var(--dark) 0 100%);
+	background: linear-gradient(calc(180.5deg + 180deg), var(--light) 0 30%, var(--mid) 0 70%, var(--dark) 0 100%);
 	color: white;
 	padding: 0.5rem;
 	--gap: 8px;
@@ -321,7 +321,8 @@ main > * {
 view-root {
 	flex: 1; min-height: 0;
 	overflow-y: scroll;
-	padding-left: var(--scrollbar-width);
+	padding-left: 0.75rem;
+	padding-right: calc(0.75rem - var(--scrollbar-width));
 }
 
 /* all elements with user content  must be tied up */
@@ -364,6 +365,9 @@ view-root {
 	width: 100%;
 	display: flex;
 	flex-flow: column;
+	/* necesary ?? */
+	height: 0;
+	min-height: 100%; 
 }
 .scroller > * {
 	flex: none;
@@ -400,20 +404,21 @@ view-root {
 	display: grid;
 	grid:
 		"header" auto
-		"main" 1fr
-		"footer" 0.75rem;
+		"main" 1fr;
+/*		"footer" 0.75rem;*/
 	border: 0.75rem solid var(--mid);
-	border-bottom: none;
+	/*border-bottom: none;*/
 }
 
 #\$left > header {
 	grid-area: header;
-	box-shadow: 0 5px 10px var(--dark);
+	/*box-shadow: 0 5px 10px var(--dark);*/
 	z-index: 1;
 }
 #\$left > footer {
 	grid-area: footer;
-	box-shadow: 0 -1px 1px var(--dark);
+	/*box-shadow: 0 -2px 4px var(--dark);*/
+	/*box-shadow: 0 0 2px black;*/
 	z-index: 1;
 	background: var(--mid);
 }
