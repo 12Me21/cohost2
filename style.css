@@ -65,7 +65,7 @@
 * {
 	contain: content;
 	margin: 0;
-	scrollbar-color: white var(--dark);
+	scrollbar-color: yellow var(--mid);
 }
 
 /* viewport */
@@ -82,7 +82,7 @@ body, body > *, main, view-root, .scroller, .scroller > * {
 	background: inherit;
 }
 main {
-	background: var(--dark);
+	background: var(--mid);
 }
 
 body {
@@ -131,7 +131,7 @@ header {
 	padding: 0.5rem;
 	--gap: 8px;
 	height: 32px;
-	border-right: 1em solid var(--dark);
+	/*border-right: 1em solid var(--dark);*/
 }
 #\$title {
 	font-weight: bold;
@@ -187,7 +187,7 @@ mark-down {
 }
 
 .post-chain {
-	background: var(--dark);
+	background: var(--mid);
 	--avatar-size: 24px;
 }
 
@@ -197,7 +197,7 @@ mark-down {
 }
 
 .post-chain > :nth-child(n+2) {
-	margin-top: 3px;
+	margin-top: 2px;
 }
 
 .post-chain, .post:not(.post-chain > *) {
@@ -388,7 +388,7 @@ view-root {
 	margin: 0.25rem;
 }
 .profile-header {
-	border-bottom: 1rem solid var(--dark);
+	/*border-bottom: 1rem solid var(--dark);*/
 }
 .profile-display-name {
 	font-size: 1.5em;
