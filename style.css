@@ -34,6 +34,8 @@
 }
 
 :root {
+	--scrollbar-width: 12px;
+	
 	--image-border: 1px solid silver;
 	--embed-height: 20vh;
 	
@@ -83,11 +85,9 @@ body, body > *, main, view-root, .scroller, .scroller > * {
 }
 main {
 	background: var(--mid);
+	border-left: var(--scrollbar-width) solid var(--mid);
 }
 
-body {
-	border: 1rem solid var(--mid);
-}
 #\$sidebar {
 	border-bottom: 1rem solid var(--dark);
 }
@@ -201,7 +201,7 @@ mark-down {
 }
 
 .post-chain, .post:not(.post-chain > *) {
-	margin: 1rem 0.25rem;
+	margin: 1rem 0;
 	border-radius: 1rem /* 1rem 1rem 0.5rem 0.5rem; */
 }
 
@@ -322,6 +322,7 @@ main > * {
 view-root {
 	flex: 1; min-height: 0;
 	overflow-y: scroll;
+	padding: 0 calc(1rem - var(--scrollbar-width));
 }
 
 /* all elements with user content  must be tied up */
@@ -401,6 +402,7 @@ view-root {
 	grid:
 		"header" auto
 		"main" 1fr;
+	border-bottom: 1rem solid var(--light);
 }
 
 #\$left > header {
