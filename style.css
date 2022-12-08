@@ -34,6 +34,8 @@
 }
 
 :root {
+	--bg: white;
+	
 	--scrollbar-width: 12px;
 	
 	--image-border: 1px solid silver;
@@ -119,6 +121,10 @@ img, input, button {
 	vertical-align: top;
 }
 
+a {	
+	color: unset;
+	text-decoration: none;
+}
 a:hover {	
 	text-decoration: underline !important;
 }
@@ -157,8 +163,9 @@ header {
 /* notifications */
 .notification {
 	margin: 0.25rem;
-	border: 1px solid;
-	padding: 2px;
+	/*border: 1px solid;*/
+	border-radius: 1rem;
+	padding: 2px 0.5rem;
 }
 .notification > .icon {
 	margin-right: 0.25em;
@@ -191,7 +198,7 @@ mark-down {
 }
 
 .post {
-	background: white;
+	background: var(--bg);
 	--avatar-size: 24px;
 }
 
@@ -212,6 +219,15 @@ mark-down {
 
 .post-header:not(.post:first-child > *) {
 	/*box-shadow: 0 1px 1px #0008, inset 0 2px 0px 1px var(--dark);*/
+}
+
+time {
+	opacity: 50%;
+	font-size: 0.875em;
+	font-variant-numeric: tabular-nums;
+}
+.post-header > .post-time {
+	margin-left: auto;
 }
 
 .post > h1 {
@@ -372,6 +388,9 @@ view-root {
 .scroller > * {
 	flex: none;
 }
+.scroller > * > * {
+	background: var(--bg);
+}
 .scroller, view-root, main, body > div, aside {
 	contain: strict;
 }
@@ -436,6 +455,7 @@ view-root {
 			"caption";
 	place-content: center stretch;
 	gap: 0.5rem;
+	z-index: 100;
 }
 
 #\$gallery > figcaption {

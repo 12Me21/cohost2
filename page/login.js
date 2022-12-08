@@ -6,27 +6,27 @@ class LoginView extends View {
 		return "Log In"
 	}
 	render() {
-		let x = elem('form')
+		let x = Draw.elem('form')
 		x.method='dialog'
 		
-		let e = elem('input')
+		let e = Draw.elem('input')
 		e.type='email'
 		e.name='email'
 		e.placeholder="Email"
 		
-		let b = elem('button')
+		let b = Draw.elem('button')
 		b.append('log in')
 		
-		let p = elem('input')
+		let p = Draw.elem('input')
 		p.type='password'
 		p.name='password'
 		p.placeholder="Password"
 		p.autocomplete='current-password'
 		
-		let s = elem('label')
+		let s = Draw.elem('label')
 		s.title="Show Password"
 		
-		let c = elem('input')
+		let c = Draw.elem('input')
 		c.type='checkbox'
 		c.autocomplete='off'
 		c.onchange = ev=>{
@@ -35,7 +35,7 @@ class LoginView extends View {
 		
 		s.append('👁️', c)
 		
-		let pw = elem('div', 'row align')
+		let pw = Draw.elem('div', {class:'row align'})
 		pw.append(p, s)
 		
 		x.append(e, pw, b)

@@ -32,34 +32,34 @@ class ProjectView extends View {
 		this.$root.className += ' scroller'
 		// profile
 		let p = this.data.project
-		let e = elem('div', 'profile-header col')
+		let e = Draw.elem('div', {class:'profile-header col'})
 		
-		let e1 = elem('div', 'row')
+		let e1 = Draw.elem('div', {class:'row'})
 		e.append(e1)
 		
-		let e2 = elem('div', 'col fill')
+		let e2 = Draw.elem('div', {class:'col fill'})
 		e1.append(p.render_avatar(), e2)
 		
 		//e2.append(p.render_handle())
 		if (p.displayName) {
-			let dn = elem('div', 'profile-display-name')
+			let dn = Draw.elem('div', {class:'profile-display-name'})
 			dn.append(pre(p.displayName))
 			e2.append(dn)
 		}
 		
 		if (p.dek) {
-			let de = elem('div', 'profile-headline')
+			let de = Draw.elem('div', {class:'profile-headline'})
 			de.append(pre(p.dek))
 			e2.append(de)
 		}
 		
 		if (p.pronouns) {
-			let pr = elem('div', 'profile-pronouns align row')
+			let pr = Draw.elem('div', {class:'profile-pronouns align row'})
 			pr.append(icon('profile-pronouns', true), pre(p.pronouns))
 			e2.append(pr)
 		}
 		if (p.url) {
-			let pr = elem('div', 'profile-link align row')
+			let pr = Draw.elem('div', {class:'profile-link align row'})
 			pr.append(icon('profile-link', true), pre(p.url))
 			e2.append(pr)
 		}
@@ -69,7 +69,7 @@ class ProjectView extends View {
 		this.$root.append(e)
 		
 		// posts
-		let n = elem('div')
+		let n = Draw.elem('div')
 		for (let post of this.data.posts)
 			n.append(post.render_chain())
 		this.$root.append(n)

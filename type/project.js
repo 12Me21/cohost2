@@ -25,22 +25,22 @@ class Project extends Entity {
 	}
 	
 	render_avatar() {
-		let img = elem('img')
+		let img = Draw.elem('img')
 		img.src = this.avatarURL
-		let outer = elem('div', `avatar mask-${this.avatarShape}`)
+		let outer = Draw.elem('div', {class:`avatar mask-${this.avatarShape}`})
 		outer.append(img)
 		return outer
 	}
 	
 	render_handle() {
-		let e = elem('span', 'name')
+		let e = Draw.elem('span', {class:'name'})
 		e.append("@", pre(this.handle))
 		return e
 	}
 	
 	render_link() {
 		let e = this.render_handle()
-		let a = elem('a', 'project-label align')
+		let a = Draw.elem('a', {class:'project-label align'})
 		a.href = NAV.render_link(this.handle)
 		a.append(this.render_avatar(), " ", e)
 		return a

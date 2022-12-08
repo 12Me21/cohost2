@@ -1,5 +1,30 @@
 "use strict"
 
+function BaseElem(ps) {
+	if (ps!=undefined) {
+		if (Object.getPrototypeOf(ps) != Object.prototype)
+			throw new TypeError(`BaseElem expected object, got ${ps}`)
+		for (let p in ps) {
+			if (p == 'class') {
+				console.log(p, ps[p])
+				if (this.className)
+					this.className += " "+ps[p]
+				else
+					this.className = ps[p]
+			} else if (p == 8) {
+				this.append(...ps[p])
+			} else if (p == 2) {
+				ps[p].append(this)
+			} else {
+				this.setAttribute(p, ps[p])
+			}
+		}
+	}
+	return this
+}
+
+// this file is messy, need to organize all this somehow..
+
 // still scared to use this...
 let HTML = ([html])=>{
 	let temp = document.createElement('template')
@@ -36,13 +61,6 @@ return holder`
 	return c
 }
 
-function elem(name, cn) {
-	let x = document.createElement(name)
-	if (cn)
-		x.className = cn
-	return x
-}
-
 function icon(name, small) {
 	let svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg')
 	let use = document.createElementNS("http://www.w3.org/2000/svg", 'use')
@@ -55,7 +73,7 @@ function icon(name, small) {
 }
 
 function pre(text) {
-	let s = elem('span', 'pre')
+	let s = Draw.elem('span', {class:'pre'})
 	s.textContent = text
 	return s
 }
@@ -74,4 +92,28 @@ function gallery_show(img) {
 	}
 	gallery_image = img
 	$gallery.hidden = !img
+}
+
+const Draw = {
+	time(date) {
+		return this.elem('time', {
+			8:[this.time_string(date)]
+		})
+	},
+	
+	elem(name, p) {
+		return BaseElem.call(document.createElement(name), p)
+	},
+	
+	time_string(date) {
+		// time string as something like: (depends on locale)
+		// today: "10:37 AM"
+		// older: "December 25, 2021, 4:09 PM"
+		let options
+		if (Date.now()-date.getTime() > 1000*60*60*12)
+			options = {year:'numeric', month:'long', day:'numeric', hour:'numeric', minute:'2-digit'}
+		else
+			options = {hour:'numeric', minute:'2-digit'}
+		return date.toLocaleString([], options)
+	},
 }

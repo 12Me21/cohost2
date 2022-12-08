@@ -38,6 +38,8 @@ class Post extends Entity {
 		this.postingProject = new Project(this.postingProject)
 		Post.revive_list(this.shareTree)
 		
+		this.publishedAt = new Date(this.publishedAt)
+		
 		let tsop = this.transparentShareOfPostId
 		if (tsop) {
 			this.transparentShareOfPost = this.shareTree.find(x=>x.postId==tsop)
@@ -48,14 +50,13 @@ class Post extends Entity {
 		let tsp = this.transparentShareOfPost
 		if (tsp) {
 			let e = tsp.render_chain()
-			let name = elem('div', 'post-header row align wrap')
-			name.append(this.postingProject.render_link())
+			let name = this.render_header()
 			name.prepend(icon('share'))
 			e.append(name)
 			return e
 		}
 		
-		let e = elem('div', 'post-chain col')
+		let e = Draw.elem('div', {class:'post-chain col'})
 		
 		if (this.shareTree.length) {
 			for (let post of this.shareTree)
@@ -67,9 +68,23 @@ class Post extends Entity {
 		return e
 	}
 	
+	render_header() {
+		return Draw.elem('div', {
+			class: 'post-header row align wrap',
+			8: [
+				this.postingProject.render_link(),
+				NAV.link(this.singlePostPageUrl, {
+					class: 'post-time',
+					8: [
+						Draw.time(this.publishedAt),
+					]
+				})
+			],
+		})
+	}
+	
 	render() {
-		let name = elem('div', 'post-header row align wrap')
-		name.append(this.postingProject.render_link())
+		let name = this.render_header()
 		
 		let tsp = this.transparentShareOfPost
 		if (tsp) {
@@ -79,31 +94,36 @@ class Post extends Entity {
 			return e
 		}
 		
-		let e = elem('article', 'post col')
-		
-		e.append(name)
+		let e = Draw.elem('article', {
+			class: 'post col',
+			8: [name],
+		})
 		
 		if (this.headline) {
-			let title = elem('h1')
-			title.append(this.headline)
-			e.append(title)
+			Draw.elem('h1', {
+				2: e,
+				8: [this.headline],
+			})
 		}
 		
 		let at = this.blocks.filter(x=>x.type=='attachment')
 		if (at.length) {
-			let imgs = elem('div', 'images row align')
-			for (let {attachment:{previewURL, fileURL, altText}} of at) {
-				let img = elem('img')
-				img.src = previewURL
-				img.alt = altText
-				img.title = altText
-				img.loading = 'lazy'
-				imgs.append(img)
-			}
-			e.append(imgs)
+			Draw.elem('div', {
+				class: 'images row align',
+				2: e,
+				8: at.map(x=>{
+					let a = x.attachment
+					return Draw.elem('img', {
+						src: a.previewURL,
+						alt: a.altText,
+						title: a.altText,
+						loading: 'lazy',
+					})
+				}),
+			})
 		}
 		
-		let content = elem('mark-down')
+		let content = Draw.elem('mark-down')
 		let sh = content.attachShadow({mode:'open'})
 		let s = $prose_css.cloneNode(true)
 		s.disabled = false
@@ -121,11 +141,11 @@ class Post extends Entity {
 			if (!/^<div\b/.test(fm) && res.initial.firstChild.tagName=='DIV') // i dont fucking know
 				d = res.initial.firstChild
 			else {
-				d = elem('div')
+				d = Draw.elem('div')
 				d.append(res.initial)
 			}
 		} else
-			d = elem('div')
+			d = Draw.elem('div')
 		
 		sh.append(d)
 		
@@ -134,7 +154,7 @@ class Post extends Entity {
 			//if (res.expandedLength > 1)
 				root.append(...root.firstChild.childNodes)
 			let nodes = [...root.childNodes]
-			let a = elem('a', 'read-more')
+			let a = Draw.elem('a', {class:'read-more'})
 			a.textContent = "read more"
 			a.onclick = ev=>{
 				console.log(ev)
@@ -158,11 +178,10 @@ class Post extends Entity {
 	}
 	
 	render_link() {
-		let p = elem('span', 'pre name')
+		let p = Draw.elem('span', {class:'pre name'})
 		p.append(this.headline || this.filename)
-		let url = this.singlePostPageUrl.replace("https://cohost.org/", "")
-		let a = elem('a', 'post-label')
-		a.href = NAV.render_link(url)
+		let a = Draw.elem('a', {class:'post-label'})
+		a.href = NAV.render_link(this.singlePostPageUrl)
 		a.append(p)
 		return a
 	}

@@ -15,7 +15,7 @@ class Notif {
 	}
 	
 	render(ic, color, action="["+this.type+"]") {
-		let e = elem('div', 'notification row align wrap')
+		let e = Draw.elem('div', {class:'notification row align wrap'})
 		
 		ic = icon(ic, true)
 		if (color)
@@ -24,7 +24,7 @@ class Notif {
 		let fp = this.fromProjects
 		let from = fp[0].render_link()
 		
-		let t = elem('span', 'pre')
+		let t = Draw.elem('span', {class:'pre'})
 		if (fp.length > 1)
 			t.append(` and ${fp.length-1} others`)
 		t.append(" "+action+" ")

@@ -2,9 +2,10 @@
 
 class Entity {
 	static revive_list(list) {
-		list.forEach((x,i)=>{
-			list[i] = new this(x)
-		})
+		if (list)
+			list.forEach((x,i)=>{
+				list[i] = new this(x)
+			})
 	}
 	static revive_map(map) {
 		for (let [k,v] of Object.entries(map))

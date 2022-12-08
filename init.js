@@ -30,7 +30,7 @@ log='hi'
 		['followers', "followers", 'rc/project/followers'],
 		['login', "log in", 'rc/login'],
 	]) {
-		let a = NAV.render_link(u)
+		let a = NAV.render_link(new URL("web+cohost:/"+u))
 		a.append(icon(i), t)
 		a.className = 'row align'
 		$sidebar.append(a)

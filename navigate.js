@@ -51,10 +51,12 @@ class Nav {
 	update_from_location() {
 		let fragment = this.read_location()
 		let match
-		if (fragment.endsWith("/")) {
+		// todo: update address bar url here ?
+		if (fragment.startsWith("/"))
+			fragment = fragment.slice(1)
+		if (fragment.endsWith("/"))
 			fragment = fragment.slice(0, -1)
-			// todo: update address bar url here
-		}
+		
 		let cls = this.views.find(cls=>{
 			match = cls.path_regex.exec(fragment)
 			return match
@@ -81,14 +83,26 @@ class Nav {
 		$status.textContent = text
 	}
 	
-	render_link(location) {
+	link(url, p) {
+		if ('string'==typeof url)
+			url = new URL(url, 'https://cohost.org')
 		let a = document.createElement('a')
-		a.href = "#"+location
-		return a
+		if (url.origin=="https://cohost.org" || url.protocol=='web+cohost:')
+			a.href = "#"+url.pathname+url.search+url.hash
+		else
+			a.href = url.href
+		return BaseElem.call(a, p)
 	}
 	
-	check_path(path) {
-		
+	render_link(url) {
+		if ('string'==typeof url)
+			url = new URL(url, 'https://cohost.org')
+		let a = document.createElement('a')
+		if (url.origin=="https://cohost.org" || url.protocol=='web+cohost:')
+			a.href = "#"+url.pathname+url.search+url.hash
+		else
+			a.href = url.href
+		return a
 	}
 }
 
@@ -98,7 +112,7 @@ class UnknownView extends View {
 	static path = null
 	render() {
 		let ch = "https://cohost.org/"+this.location[0]
-		let a = document.createElement('a')
+		let a = Draw.elem('a')
 		a.href = ch
 		a.append(ch)
 		this.$root.append("go to cohost: ", a)

@@ -9,7 +9,8 @@ function make_filter(event, field, process) {
 			if (!String(data.documentUrl).startsWith('file://'))
 				return
 			let {[field]:headers} = data
-			return {[field]:process(headers)}
+			let p = process(headers)
+			return {[field]:p}
 		},
 		{urls: ["https://cohost.org/*"]},
 		["blocking", field],
