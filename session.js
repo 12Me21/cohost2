@@ -51,6 +51,7 @@ class Session {
 			headers: {x_12_cookie: 'connect.sid='+this.cookie},
 		})
 		if (resp.ok) {
+			localStorage.removeItem('sid')
 			this.cookie = null
 		}
 		return resp
