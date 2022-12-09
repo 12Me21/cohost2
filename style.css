@@ -118,7 +118,7 @@ img {
 	object-fit: contain;
 }
 
-img, input, button {
+img, input, button, svg {
 	vertical-align: top;
 }
 
@@ -128,6 +128,7 @@ a {
 }
 a:hover {	
 	text-decoration: underline !important;
+	/*color: rgb(0, 84, 163) !important;*/
 }
 
 /* header */
@@ -216,6 +217,13 @@ mark-down {
 	padding: 0.5rem;
 	background: var(--lighter);
 	box-shadow: 0 1px 1px #0008;
+}
+
+.post-header > .post-controls {
+	margin-left: 0.25rem;
+}
+.post-header > .post-controls > * {
+	margin-left: 0.25rem;
 }
 
 .post-header:not(.post:first-child > *) {

@@ -78,6 +78,14 @@ class Post extends Entity {
 					8: [
 						Draw.time(this.publishedAt),
 					]
+				}),
+				Draw.elem('div', {
+					class: 'post-controls row',
+					8: [
+						icon('edit'),
+						icon('share'),
+						icon('like'),
+					],
 				})
 			],
 		})
