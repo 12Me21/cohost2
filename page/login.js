@@ -42,14 +42,18 @@ class LoginView extends View {
 		
 		x.onsubmit = async (ev)=>{
 			ev.preventDefault()
+			if (b.disabled)
+				return
+			b.disabled = true
 			try {
 				await SESS.request_cookie(e.value, p.value)
+				window.location.hash = "#" // hack
+				RELOAD()
 			} catch(e) {
+				b.disabled = false
 				alert('login failed')
 				throw e
 			}
-			window.location.hash = "#" // hack
-			RELOAD()
 		}
 		
 		this.$root.append(x)

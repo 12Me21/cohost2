@@ -496,3 +496,8 @@ view-root {
 	height: 100%; /* for some reason this fixes images overflowing when too tall ?? */
 	place-self: center;
 }
+
+:disabled {
+	color: gray;
+	cursor: not-allowed;
+}
