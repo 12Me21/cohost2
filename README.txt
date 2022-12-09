@@ -1,4 +1,5 @@
 hi! this is very unfinished !!
+ { disclaimer: i am not affiliated with cohost, etc. etc. }
 
 🔸🔶🟧 INSTRUCTIONS 🟧🔶🔸
 
