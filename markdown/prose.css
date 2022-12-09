@@ -149,7 +149,7 @@ ol[type=I]  { list-style-type: upper-roman; }
 ol[type=i]  { list-style-type: lower-roman; }
 ol[type=Is] { list-style-type: upper-roman; }
 ol[type=is] { list-style-type: lower-roman; }
-ol[type=1]  { list-style-type: decimal; }
+ol[type='1']  { list-style-type: decimal; }
 ul { list-style-type: disc; }
 
 :where(ul) {
@@ -186,7 +186,7 @@ ul { list-style-type: disc; }
 	color: var(--tw-prose-headings);
 	font-weight: 800;
 	font-size: 2.25em;
-	margin: 0 unset 0.89em;
+	margin: 0 0 0.89em;
 	line-height: 1.11;
 }
 :where(h1 strong) {
@@ -196,7 +196,7 @@ ul { list-style-type: disc; }
 	color: var(--tw-prose-headings);
 	font-weight: 700;
 	font-size: 1.5em;
-	margin: 2em unset 1em;
+	margin: 2em 0 1em;
 	line-height: 1.33;
 }
 :where(h2 strong) {
@@ -206,7 +206,7 @@ ul { list-style-type: disc; }
 	color: var(--tw-prose-headings);
 	font-weight: 600;
 	font-size: 1.25em;
-	margin: 1.6em unset 0.6em;
+	margin: 1.6em 0 0.6em;
 	line-height: 1.6;
 }
 :where(h3 strong) {
@@ -215,7 +215,7 @@ ul { list-style-type: disc; }
 :where(h4) {
 	color: var(--tw-prose-headings);
 	font-weight: 600;
-	margin: 1.5em unset 0.5em;
+	margin: 1.5em 0 0.5em;
 	line-height: 1.5;
 }
 :where(h4 strong) {

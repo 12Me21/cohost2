@@ -6,7 +6,7 @@ function BaseElem(ps) {
 			throw new TypeError(`BaseElem expected object, got ${ps}`)
 		for (let p in ps) {
 			if (p == 'class') {
-				console.log(p, ps[p])
+				//console.log(p, ps[p])
 				if (this.className)
 					this.className += " "+ps[p]
 				else

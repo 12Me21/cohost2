@@ -3,7 +3,7 @@
 // output: {project, posts, pagination}
 Session.prototype.request_project = async function(handle) {
 	let data = await this.request_page(handle)
-	
+	console.log(data)
 	let ppv = data.__COHOST_LOADER_STATE__['project-page-view']
 	let perm = ppv.canAccessPermissions
 	let project = new Project(ppv.project)
@@ -12,8 +12,12 @@ Session.prototype.request_project = async function(handle) {
 	let pd = qs.find(({queryKey:[k,p]})=>k[0]=='posts' && k[1]=='profilePosts' && p.projectHandle==handle)
 	pd = pd.state.data
 	
+	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && p.projectHandle==handle)
+	fs = fs.state.data
+	
 	Post.revive_list(pd.posts)
 	pd.project = project
+	pd.following = fs
 	return pd
 }
 
@@ -63,6 +67,21 @@ class ProjectView extends View {
 			pr.append(icon('profile-link', true), pre(p.url))
 			e2.append(pr)
 		}
+		
+		let fs = this.data.following
+		let fol = Draw.elem('div', {
+			class: 'row align',
+			2: e2,
+			8: [
+				Draw.elem('button', {
+					8: [fs.readerToProject ? 'following' : '']
+				}),
+				Draw.elem('span', {
+					8: [fs.projectToReader ? 'follows you' : '']
+				}),
+			],
+		})
+		
 		// todo: needs parsing
 		if (p.description) {
 		}

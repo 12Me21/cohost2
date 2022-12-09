@@ -252,7 +252,7 @@ self.__LOADABLE_LOADED_CHUNKS__.push([[0],{
 				x = name(attrs)
 				return x // i think?
 			} else {
-				console.log('createElement ?', name, attrs, contents)
+				//console.log('createElement ?', name, attrs, contents)
 				x = document.createElement('div')
 			}
 			
