@@ -73,6 +73,25 @@
 		all: unset;
 		display: block;
 	}
+	
+	.a {
+		width: 240;
+		height: 240;
+		display: flex;
+	}
+	.a > input {
+		display: none;
+	}
+	.a > input:checked + svg {
+		display: none;
+	}
+	.a > input:not(:checked) + * + svg {
+		display: none;
+	}
+	.a > svg {
+		width: 100%;
+		height: 100%;
+	}
 </style>
 
 <script>
@@ -100,6 +119,12 @@
 		}
 	})
 </script>
+
+<label class='a'>
+<input type=checkbox>
+<svg><use href="icons.svg#share"/></svg>
+<svg><use href="icons.svg#share-on"/></svg>
+</label>
 
 <i-s data-id=egg data-size=32></i-s>
 <i-s data-id=egg-button data-size=32></i-s>

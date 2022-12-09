@@ -148,10 +148,10 @@
 	</symbol>
 	
 	<symbol id="share-on" viewBox="-12 -12 24 24">
-		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="
+		<path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="
 M -8 -8
 v 5
-h 5
+l 5 0
 z
 
 M 8 8
@@ -161,10 +161,11 @@ z
 "/>
 		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="
 M 7.5 -1.5
-A 8.1 8.1, 0 0 0, -7 -4
+A 8.25 7.75, -30 0 0, -7 -4
 
 M -7.5 1.5
-A 8.1 8.1, 0 0 0, 7 4
+A 8.25 7.75, -30 0 0, 7 4
+
 "/>
 	</symbol>
 	
