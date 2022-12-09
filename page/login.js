@@ -57,3 +57,21 @@ class LoginView extends View {
 }
 
 NAV.register(LoginView)
+
+class LogoutView extends View {
+	static path = ['rc', 'logout']
+	title() {
+		return "Log Out"
+	}
+	async request() {
+		this.ok = (await SESS.request_logout()).ok
+	}
+	render() {
+		if (this.ok)
+			this.$root.append('logged out')
+		else
+			this.$root.append('logout failed !')
+	}
+}
+
+NAV.register(LogoutView)

@@ -45,6 +45,17 @@ class Session {
 		this.save_cookie()
 	}
 	
+	async request_logout() {
+		let resp = await fetch(`${Session.BASE}/rc/logout`, {
+			method: 'POST',
+			headers: {x_12_cookie: 'connect.sid='+this.cookie},
+		})
+		if (resp.ok) {
+			this.cookie = null
+		}
+		return resp
+	}
+	
 	save_cookie() {
 		localStorage.setItem('sid', this.cookie)
 	}

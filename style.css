@@ -176,10 +176,11 @@ header {
 
 /* notifications */
 .notification {
-	margin: 0.25rem;
+	margin-bottom: 0.25rem;
 	/*border: 1px solid;*/
 	border-radius: 1rem;
 	padding: 2px 0.5rem;
+	background: var(--bg);
 }
 .notification > .icon {
 	margin-right: 0.25em;
@@ -303,6 +304,7 @@ time {
 		drop-shadow(0 -2px #D0D);*/
 	
 }
+
 .mask-roundrect > img {
 	border-radius: 0.5rem;
 }
@@ -310,21 +312,19 @@ time {
 	border-radius: 50%;
 }
 .mask-squircle > img {
-	clip-path: url('res/icons.svg#clip-squircle');
-	position: relative;
+	clip-path: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><clipPath id="clip-squircle" clipPathUnits="objectBoundingBox"><path d="M .5 0 C .9 0 1 .1 1 .5 S .9 1 .5 1 0 .9 0 .5 .1 0 .5 0 z"/></clipPath></svg>#clip-squircle');
 }
+/* cohost plus exclusives? */
 .mask-capsule-small > img {
-	clip-path: url('res/icons.svg#clip-capsule-small');
-	position: relative;
+	clip-path: inset(0% 30.859% round 19.141%);
 }
 .mask-capsule-large > img {
-	clip-path: url('res/icons.svg#clip-capsule-large');
-	position: relative;
+	clip-path: inset(0% 19.141% round 30.859%);
 }
 .mask-egg > img {
-	clip-path: url('res/icons.svg#clip-egg');
-	position: relative;
+	clip-path: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><clipPath id="clip-egg" clipPathUnits="objectBoundingBox"><path d="M .41198 .17151 C .14128 .24405, -.04801 .41190 , .01073 .63110 S .31732 .90102 , .58802 .82849, 1.04801 .58810 , .98927 .36890, .68268 .09898 , .41198 .17151"/></clipPath></svg>#clip-egg'); /* extremely highly precision egg path calculated by me from scratch */
 }
+
 /*.mask-capsule-small::after {
 	display: block;
 	display: var(--avatar-border, none);

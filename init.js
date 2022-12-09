@@ -22,13 +22,14 @@ log='hi'
 	for (let [i, t, u] of [
 		['home', "home", ''],
 		['notifications', "notifications", 'rc/project/notifications'],
-		['like', "your likes", 'rc/likes'],
-		['search', "search", 'rc/search'],
-		['profile', "profile", '-12'],
-		['drafts', "drafts", 'rc/posts/unpublished'],
-		['following', "following", 'rc/project/following'],
-		['followers', "followers", 'rc/project/followers'],
-		['login', "log in", 'rc/login'],
+		//['like', "your likes", 'rc/likes'],
+		//['search', "search", 'rc/search'],
+		//['profile', "profile", '-12'],
+		//['drafts', "drafts", 'rc/posts/unpublished'],
+		//['following', "following", 'rc/project/following'],
+		//['followers', "followers", 'rc/project/followers'],
+		['profile', "log in", 'rc/login'],
+		['profile', "log out", 'rc/logout'],
 	]) {
 		let a = NAV.render_link(new URL("web+cohost:/"+u))
 		a.append(icon(i), t)
