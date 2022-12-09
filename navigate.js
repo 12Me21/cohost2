@@ -43,8 +43,11 @@ class Nav {
 			this.set_status('ok')
 			ok = true
 		} finally {
-			if (!ok)
+			if (!ok) {
 				this.set_status('error')
+				$main.replaceChildren()
+				$title.replaceChildren('error')
+			}
 		}
 	}
 	

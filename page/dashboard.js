@@ -4,6 +4,8 @@
 Session.prototype.request_dashboard = async function(refTimestamp, skipPosts) {
 	let data = await this.request_page('', {refTimestamp, skipPosts})
 	let db = data.__COHOST_LOADER_STATE__.dashboard
+	if (!db)
+		return false
 	new Project(db.project)
 	Post.revive_list(db.posts)
 	//Project.revive_list(db.staffProjects)
@@ -22,6 +24,11 @@ class DashboardView extends View {
 		await Markdown.ready
 	}
 	render() {
+		if (this.data===false) {
+			// quick hack
+			this.$root.append('(not logged in)')
+			return
+		}
 		let n = Draw.elem('div')
 		this.$root.append(n)
 		for (let post of this.data.posts)
