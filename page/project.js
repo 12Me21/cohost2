@@ -9,10 +9,10 @@ Session.prototype.request_project = async function(handle) {
 	let project = new Project(ppv.project)
 	
 	let qs = data['trpc-dehydrated-state'].queries
-	let pd = qs.find(({queryKey:[k,p]})=>k[0]=='posts' && k[1]=='profilePosts' && p.projectHandle==handle)
+	let pd = qs.find(({queryKey:[k,p]})=>k[0]=='posts' && k[1]=='profilePosts' && Project.compare_handles(p.projectHandle, handle))
 	pd = pd.state.data
 	
-	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && p.projectHandle==handle)
+	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && Project.compare_handles(p.projectHandle, handle))
 	fs = fs.state.data
 	
 	Post.revive_list(pd.posts)
@@ -33,54 +33,79 @@ class ProjectView extends View {
 		return "@"+this.data.project.handle
 	}
 	render() {
-		this.$root.className += ' scroller'
 		// profile
 		let p = this.data.project
-		let e = Draw.elem('div', {class:'profile-header col'})
+		let e = Draw.elem('div', {
+			class: 'profile-header col'
+		})
 		
-		let e1 = Draw.elem('div', {class:'row'})
-		e.append(e1)
+		let e2 = Draw.elem('div', {
+			class: 'col fill'
+		})
 		
-		let e2 = Draw.elem('div', {class:'col fill'})
-		e1.append(p.render_avatar(), e2)
+		let e1 = Draw.elem('div', {
+			class: 'row',
+			2: e,
+			8: [p.render_avatar(), e2],
+		})
 		
-		//e2.append(p.render_handle())
-		if (p.displayName) {
-			let dn = Draw.elem('div', {class:'profile-display-name'})
-			dn.append(pre(p.displayName))
-			e2.append(dn)
-		}
+		Draw.elem('div', {
+			class: 'profile-display-name',
+			2: e2,
+			8: [pre(p.name)],
+		})
 		
 		if (p.dek) {
-			let de = Draw.elem('div', {class:'profile-headline'})
-			de.append(pre(p.dek))
-			e2.append(de)
+			Draw.elem('div', {
+				class: 'profile-headline',
+				8: [pre(p.dek)],
+				2: e2,
+			})
 		}
 		
+		let e3 = Draw.elem('div', {
+			class: 'row align',
+			2: e2,
+		})
+		
 		if (p.pronouns) {
-			let pr = Draw.elem('div', {class:'profile-pronouns align row'})
-			pr.append(icon('profile-pronouns', true), pre(p.pronouns))
-			e2.append(pr)
-		}
-		if (p.url) {
-			let pr = Draw.elem('div', {class:'profile-link align row'})
-			pr.append(icon('profile-link', true), pre(p.url))
-			e2.append(pr)
+			Draw.elem('div', {
+				class:'profile-pronouns align row',
+				2: e3,
+				8: [
+					icon('profile-pronouns', true),
+					pre(p.pronouns),
+				],
+			})
 		}
 		
 		let fs = this.data.following
-		let fol = Draw.elem('div', {
+		Draw.elem('div', {
 			class: 'row align',
-			2: e2,
+			style: 'margin-left: auto;',
+			2: e3,
 			8: [
 				Draw.elem('button', {
-					8: [fs.readerToProject ? 'following' : '']
+					8: [fs.readerToProject ? 'following' : 'follow']
 				}),
 				Draw.elem('span', {
 					8: [fs.projectToReader ? 'follows you' : '']
 				}),
 			],
 		})
+		
+		
+		if (p.url) {
+			Draw.elem('a', {
+				class: 'profile-link align row',
+				href: p.url,
+				2: e2,
+				8: [
+					icon('profile-link', true),
+					pre(p.url),
+				],
+			})
+		}
 		
 		// todo: needs parsing
 		if (p.description) {

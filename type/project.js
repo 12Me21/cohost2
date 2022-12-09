@@ -20,8 +20,12 @@ class Project extends Entity {
 		}
 	}
 	
+	static compare_handles(a, b) {
+		return a.toLowerCase() == b.toLowerCase()
+	}
+	
 	get name() {
-		return this.displayName || this.handle
+		return this.displayName || "@"+this.handle
 	}
 	
 	render_avatar() {

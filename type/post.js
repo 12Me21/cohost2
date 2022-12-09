@@ -122,7 +122,7 @@ class Post extends Entity {
 				}),
 			})
 		}
-		
+		//❆❄❅
 		let content = Draw.elem('mark-down')
 		let sh = content.attachShadow({mode:'open'})
 		let s = $prose_css.cloneNode(true)

@@ -22,7 +22,6 @@ class DashboardView extends View {
 		await Markdown.ready
 	}
 	render() {
-		this.$root.className += ' scroller'
 		let n = Draw.elem('div')
 		this.$root.append(n)
 		for (let post of this.data.posts)
