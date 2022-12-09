@@ -139,6 +139,10 @@
 		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
 	</symbol>
 	
+	<symbol id="like-on" viewBox="0 0 24 24">
+		<path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+	</symbol>
+	
 	<symbol id="like-filled" viewBox="0 0 20 20">
 		<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
 	</symbol>
@@ -146,12 +150,21 @@
 	<symbol id="share" viewBox="0 0 24 24">
 		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
 	</symbol>
-	
+M -8 -7.75
+v 4.75
+h 4.75
+z
+
+M 8 7.75
+v -4.75
+h -4.75
+z
+
 	<symbol id="share-on" viewBox="-12 -12 24 24">
 		<path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="
 M -8 -8
 v 5
-l 5 0
+h 5
 z
 
 M 8 8

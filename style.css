@@ -128,7 +128,19 @@ a {
 }
 a:hover {	
 	text-decoration: underline !important;
+	/*color: rgb(255, 84, 163);
+	color: rgb(255, 171, 16);*/
+	/*color: rgb(255, 171, 92);*/
+	/*filter: drop-shadow(0 0 1px);	*/
 	/*color: rgb(0, 84, 163) !important;*/
+	
+	/*filter: drop-shadow(1px 1px var(--light));*/
+	/*transform: translate(-1px, -1px);*/
+}
+
+.pressed {
+	color: rgb(255, 171, 92);
+	filter: drop-shadow(0 0 1px);	
 }
 
 /* header */

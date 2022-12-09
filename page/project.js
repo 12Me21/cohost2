@@ -13,7 +13,8 @@ Session.prototype.request_project = async function(handle) {
 	pd = pd.state.data
 	
 	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && Project.compare_handles(p.projectHandle, handle))
-	fs = fs.state.data
+	if (fs)
+		fs = fs.state.data
 	
 	Post.revive_list(pd.posts)
 	pd.project = project
@@ -80,19 +81,20 @@ class ProjectView extends View {
 		}
 		
 		let fs = this.data.following
-		Draw.elem('div', {
-			class: 'row align',
-			style: 'margin-left: auto;',
-			2: e3,
-			8: [
-				Draw.elem('button', {
-					8: [fs.readerToProject ? 'following' : 'follow']
-				}),
-				Draw.elem('span', {
-					8: [fs.projectToReader ? 'follows you' : '']
-				}),
-			],
-		})
+		if (fs)
+			Draw.elem('div', {
+				class: 'row align',
+				style: 'margin-left: auto;',
+				2: e3,
+				8: [
+					Draw.elem('button', {
+						8: [fs.readerToProject ? 'following' : 'follow']
+					}),
+					Draw.elem('span', {
+						8: [fs.projectToReader ? 'follows you' : '']
+					}),
+				],
+			})
 		
 		
 		if (p.url) {
@@ -112,6 +114,7 @@ class ProjectView extends View {
 		}
 		this.$root.append(e)
 		
+		// 
 		// posts
 		let n = Draw.elem('div')
 		for (let post of this.data.posts)
