@@ -31,7 +31,13 @@ class Session {
 	static async request_login(email, hash) {
 		const url = new URL('api/v1/login', this.BASE)
 		const body = new URLSearchParams([['email', email],['clientHash', hash]])
-		const resp = await fetch(url, {method:'POST', body, mode:'cors', headers:{'x-idk':'3'}})
+		const resp = await fetch(url, {
+			method: 'POST',
+			body,
+			mode: 'cors',
+			headers: {'x-idk':'3'},
+			//credentials: 'include',
+		})
 		const cookie = /connect.sid=(.*?);/.exec(resp.headers.get('content-language'))?.[1]
 		const data = await resp.json()
 		return {data, cookie}
@@ -49,6 +55,7 @@ class Session {
 		let resp = await fetch(`${Session.BASE}/rc/logout`, {
 			method: 'POST',
 			headers: {x_12_cookie: 'connect.sid='+this.cookie},
+			//credentials: 'include',
 		})
 		if (resp.ok) {
 			localStorage.removeItem('sid')
@@ -72,6 +79,7 @@ class Session {
 	async request_data(endpoint, data) {
 		let config = {
 			headers: {x_12_cookie: 'connect.sid='+this.cookie},
+			//credentials: 'include',
 		}
 		if (data!==undefined) {
 			config.method = 'POST'
@@ -105,9 +113,11 @@ class Session {
 					sp.append(k, v)
 			}
 		}
+		
 		console.info('🛰️ requesting', endpoint)
 		let resp = await fetch(url, {
 			headers: {x_12_cookie: 'connect.sid='+this.cookie},
+			//credentials: 'include',
 		})
 		console.info('got response')
 		let html = await resp.text()

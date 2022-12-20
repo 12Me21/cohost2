@@ -40,12 +40,16 @@ make_filter(
 				if (c)
 					h.value = c.value
 			}
+		/*	if (h.name.toLowerCase()=='set-cookie') {
+				h.value = h.value.replace(/SameSite=\w+/i, "SameSite=None").replace('HttpOnly;', "")
+				
+			}*/
 			return h
 		}).concat([
-			{name:'access-control-allow-origin', value:"*"},
-			{name:'access-control-allow-methods', value:"POST, GET, OPTIONS"},
+			{name: 'access-control-allow-origin', value: "*"},
+/*			{name:'access-control-allow-methods', value:"POST, GET, OPTIONS"},
 			{name:'access-control-allow-headers', value:"x_12_cookie"},
-			{name:'access-control-allow-credentials', value:"true"},
+			{name:'access-control-allow-credentials', value:"true"},*/
 		])
 		console.log('got response', h2)
 		return h2
