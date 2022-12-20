@@ -83,6 +83,10 @@ html, body {
 
 
 /* rendering optimizaton. browser sometimes won't use cleartype otherwise. */
+html, body {
+	background: white;
+}
+
 body, body > *, main, view-root, .scroller, .scroller > * {
 	background: inherit;
 }
@@ -230,6 +234,7 @@ mark-down {
 	padding: 0.5rem;
 	background: var(--lighter);
 	box-shadow: 0 1px 1px #0008;
+	z-index: 1;
 }
 
 .post-header > .post-controls {

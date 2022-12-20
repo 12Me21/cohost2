@@ -132,6 +132,8 @@ p > img:not([style]) {
 }
 
 :host > div {
+	background: white;
+	
 	margin: var(--prose-margin, 1rem);
 	margin-left: 0;
 	margin-right: 0;
@@ -139,8 +141,6 @@ p > img:not([style]) {
 	border-width: var(--prose-margin, 1rem);
 	border-style: none solid;
 	border-color: transparent;
-	
-	background: var(--color-white);
 }
 :host {
 	--tw-prose-headings: rgb(17, 24, 39);
@@ -176,7 +176,7 @@ p > img:not([style]) {
 	
 	--color-foreground: var(--color-cherry);
 	
-	background: var(--color-white);
+	background: white;
 	box-sizing: content-box;
 	max-width: 65ch;
 	
