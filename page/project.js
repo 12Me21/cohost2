@@ -9,10 +9,11 @@ Session.prototype.request_project = async function(handle) {
 	let project = new Project(ppv.project)
 	
 	let qs = data['trpc-dehydrated-state'].queries
-	let pd = qs.find(({queryKey:[k,p]})=>k[0]=='posts' && k[1]=='profilePosts' && Project.compare_handles(p.projectHandle, handle))
+	console.log('qs', qs)
+	let pd = qs.find(({queryKey:[k,p]})=>k[0]=='posts' && k[1]=='profilePosts' && Project.compare_handles(p.input.projectHandle, handle))
 	pd = pd.state.data
 	
-	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && Project.compare_handles(p.projectHandle, handle))
+	let fs = qs.find(({queryKey:[k,p]})=>k[0]=='projects' && k[1]=='followingState' && Project.compare_handles(p.input.projectHandle, handle))
 	if (fs)
 		fs = fs.state.data
 	

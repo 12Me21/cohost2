@@ -139,9 +139,13 @@ class Post extends Entity {
 		
 		let res = Markdown.parse_post(this)
 		
+		let d = document.createElement('div')
+		d.innerHTML = res
+		sh.append(d)
+		
 		//console.log(res)
 		//return
-		let d
+		/*let d
 		
 		if (res.initialLength) {
 			let fm = this.blocks.find(x=>x.type=='markdown')?.markdown?.content
@@ -178,7 +182,8 @@ class Post extends Entity {
 				
 			}
 			sh.append(a)
-		}
+			}*/
+		
 		
 		e.append(content)
 		

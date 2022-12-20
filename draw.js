@@ -117,3 +117,10 @@ const Draw = {
 		return date.toLocaleString([], options)
 	},
 }
+
+Markdown.parse_post = function(post) {
+	let blocks = post.blocks.filter(block=>block.type=='markdown').map(x=>x.markdown.content)
+	let {text, disableGfm} = window.markdown_check(blocks)
+	let html = window.markdown_process(text, {disableGfm, date:post.publishedAt})
+	return html
+}

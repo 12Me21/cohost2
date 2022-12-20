@@ -53,6 +53,12 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 	`)
 	
 	history.scrollRestoration = 'manual'
+	
+	let Markdown = {
+		ready: new Promise((y,n)=>{
+			window.MARKDOWN_READY = y
+		}),
+	}
 </script>
 
 <!-- =============================================================== -->
@@ -64,9 +70,10 @@ box-shadow:1.5px 5px 17px #0249,-3px -5px 10px inset #0008;
 <script src=draw.js></script>
 
 <link disabled rel=stylesheet href=markdown/prose.css id=$prose_css>
-<script src=markdown/interface.js></script>
+<!--<script src=markdown/interface.js></script>
 <script async src=markdown/b-cohost-2813.js></script>
-<script async src=markdown/b-cohost-1624.js></script>
+	  <script async src=markdown/b-cohost-1624.js></script>-->
+<script type=module src=cohost-markdown/parse.js></script>
 
 <script src=session.js></script>
 <script src=navigate.js></script>
