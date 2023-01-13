@@ -22,7 +22,8 @@ log='hi'
 	for (let [i, t, u] of [
 		['home', "home", ''],
 		['notifications', "notifications", 'rc/project/notifications'],
-		//['like', "your likes", 'rc/likes'],
+		['settings', "settings", 'rc/project/settings'],
+		['like', "your likes", 'rc/likes'],
 		//['search', "search", 'rc/search'],
 		//['profile', "profile", '-12'],
 		//['drafts', "drafts", 'rc/posts/unpublished'],

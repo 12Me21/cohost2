@@ -262,7 +262,29 @@ H 3
 	<symbol id="hashtag" viewBox="0 0 24 24">
 		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
 	</symbol>
-	
+	<symbol id="hashtag2" viewBox="-7 -7 14 14">
+		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="
+M 0.375 4.5
+l 2 -9
+
+M -0.375 -4.5
+l -2 9
+
+M -3.5 -1.5
+h 8 
+M 3.5 1.5
+h -8
+"/>
+	</symbol>
+	<symbol id="remove2" viewBox="-7 -7 14 14">
+		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="
+M 3.5 3.5
+L -3.5 -3.5
+M -3.5 3.5
+L 3.5 -3.5
+"/>
+	</symbol>
+
 	<symbol id="check" viewBox="0 0 24 24">
 		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
 	</symbol>

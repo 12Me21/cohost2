@@ -131,61 +131,9 @@ class Post extends Entity {
 			})
 		}
 		//❆❄❅
-		let content = Draw.elem('mark-down')
-		let sh = content.attachShadow({mode:'open'})
-		let s = $prose_css.cloneNode(true)
-		s.disabled = false
-		sh.append(s)
+		let elem = Markdown.render_post(this)
 		
-		let res = Markdown.parse_post(this)
-		
-		let d = document.createElement('div')
-		d.innerHTML = res
-		sh.append(d)
-		
-		//console.log(res)
-		//return
-		/*let d
-		
-		if (res.initialLength) {
-			let fm = this.blocks.find(x=>x.type=='markdown')?.markdown?.content
-			
-			if (!/^<div\b/.test(fm) && res.initial.firstChild.tagName=='DIV') // i dont fucking know
-				d = res.initial.firstChild
-			else {
-				d = Draw.elem('div')
-				d.append(res.initial)
-			}
-		} else
-			d = Draw.elem('div')
-		
-		sh.append(d)
-		
-		if (res.expandedLength) {
-			let root = res.expanded
-			//if (res.expandedLength > 1)
-				root.append(...root.firstChild.childNodes)
-			let nodes = [...root.childNodes]
-			let a = Draw.elem('a', {class:'read-more'})
-			a.textContent = "read more"
-			a.onclick = ev=>{
-				console.log(ev)
-				let h = a.hasAttribute('data-open')
-				a.toggleAttribute('data-open')
-				if (h) {
-					root.append(...nodes)
-					a.textContent = "read more"
-				} else {
-					d.append(...nodes)
-					a.textContent = "read less"
-				}
-				
-			}
-			sh.append(a)
-			}*/
-		
-		
-		e.append(content)
+		e.append(elem)
 		
 		return e
 	}
